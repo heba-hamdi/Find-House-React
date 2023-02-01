@@ -20,7 +20,7 @@ const Header = () => {
         <ul className='flex space-x-10 '>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/') && "border-b-red-500"}`} onClick={() => navigate('/')}>Home</li>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/offers') && "border-b-red-500"}`} onClick={() => navigate('/offers')}>Offers</li>
-          <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up')? "border-b-red-500": "" }`} onClick={() => (navigate('/sign-in'))}><AiOutlineUser className='text-2xl pl-2'/> Login/Register</li>
+          <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up')? "border-b-red-500": "" } || ${pathMatchRoute('/forgot-password')? "border-b-red-500": "" }`} onClick={() => (navigate('/sign-in'))}><AiOutlineUser className='text-2xl pl-2'/> Login/Register</li>
         </ul>
       </header>
     </div>

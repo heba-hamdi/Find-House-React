@@ -23,6 +23,7 @@ const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
+        // Page  Transition
         <motion.section 
         className='fixed inset-0 bg-black bg-opacity-80 bg-blur-sm'
         initial={{opacity:0}}
@@ -43,7 +44,9 @@ const SignIn = () => {
                     <div>
                         <button className='py-6 w-full bg-gray-100 lg:inline-block hidden' onClick={() => navigate("/sign-up")}>Register</button>
 
-                        <div className='h-full  flex items-start justify-center mt-3 mr-3'>
+
+                        {/* =================================== Form====================================================== */}
+                        <div className='h-full  flex items-start justify-center mt-3 mr-5'>
                             <form className='py-6 ml-3 w-full'>
                                 <h2 className='float-left mb-5 text-xl'>Login</h2>
                                 <div className='relative'>
@@ -62,6 +65,8 @@ const SignIn = () => {
                                 <div className='mb-4 before:border-t before:text-gray-300 flex before:flex-1 items-center after:border-t after:text-gray-300 flex after:flex-1'>
                                     <p className='mx-4 font-medium text-center text-sm'>Or</p>
                                 </div>
+
+                                {/* =================================Form Inputs================================================= */}
                                 <div className='relative'>
                                     <input type="email" className='w-full font-normal border rounded-md  border-gray-200 " p-2 mb-5' placeholder="Email" id='email' value={email} onChange={handleInput} />
                                     {email ? "" : <AiOutlineMail className='absolute bottom-8 right-3 text-xl text-gray-400' />}
@@ -71,9 +76,10 @@ const SignIn = () => {
                                 <div className='relative'>
                                     <input type={showPassword ? "text" : "password"} className='w-full font-normal border rounded-md  border-gray-200 " p-2' placeholder='Password' id='password' value={password} onChange={handleInput} />
                                     {showPassword ? <AiOutlineEyeInvisible className='absolute bottom-3 right-3 text-xl text-gray-400 cursor-pointer' onClick={() => { setShowPassword(false) }} /> : <AiOutlineEye className='absolute bottom-3 right-3 text-xl text-gray-400 cursor-pointer' onClick={() => { setShowPassword(true) }} />}
-
                                 </div>
 
+
+                                {/* ===============================Lower Content===================================== */}
                                 <div className='flex justify-between mt-6'>
                                     <div>
                                         <input type="checkbox" name="" id="remember-me" />
@@ -81,7 +87,7 @@ const SignIn = () => {
                                     </div>
                                     <div className='font-thin text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out'><Link to="/forgot-password">Lost your password?</Link></div>
                                 </div>
-
+                                
                                 <div>
                                     <button className='w-full font-normal border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500' id='facebook' type='submit'>
                                         <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl  ' />
