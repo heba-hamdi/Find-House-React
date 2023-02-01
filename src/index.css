@@ -6,11 +6,13 @@
 
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family:'Helvetica Neue',sans-serif;
   color:#484848;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+ background-color: #F7F7F7;
 }
 
 code {
