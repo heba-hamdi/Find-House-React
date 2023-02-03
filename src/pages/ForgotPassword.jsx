@@ -8,11 +8,13 @@ import { motion } from '../../node_modules/framer-motion/dist/framer-motion'
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState("")
+    
 
     const handleInput = (e) => {
         setUserEmail(e.target.value)
     }
 
+    
 
     return (
         // Page  Transition
