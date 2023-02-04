@@ -17,7 +17,7 @@ const Header = () => {
           <img src="https://creativelayers.net/themes/findhouse-html/images/header-logo2.png" alt="" />
           <h3 className='text-2xl mx-3'>FindHouse</h3>
         </div>
-        <ul className='flex space-x-10 '>
+        <ul className='invisible flex md:space-x-10 md:visible'>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/') && "border-b-red-500"}`} onClick={() => navigate('/')}>Home</li>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/offers') && "border-b-red-500"}`} onClick={() => navigate('/offers')}>Offers</li>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up')? "border-b-red-500": "" } || ${pathMatchRoute('/forgot-password')? "border-b-red-500": "" }`} onClick={() => (navigate('/sign-in'))}><AiOutlineUser className='text-2xl pl-2'/> Login/Register</li>
