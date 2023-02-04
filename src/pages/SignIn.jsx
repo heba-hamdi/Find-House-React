@@ -34,6 +34,7 @@ const SignIn = () => {
         const auth = getAuth();
         const userCredential= await signInWithEmailAndPassword(auth, email, password);
         const user=  userCredential.user;
+        toast.success("Login is successful")
         if(user)navigate("/")
        } catch (error) {
         toast.error("Check your email & password")

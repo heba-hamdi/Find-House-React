@@ -5,16 +5,29 @@ import { TiSocialFacebook } from 'react-icons/ti'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { motion } from '../../node_modules/framer-motion/dist/framer-motion'
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { toast } from 'react-toastify';
+
+
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState("")
-    
+
 
     const handleInput = (e) => {
         setUserEmail(e.target.value)
     }
 
-    
+    const onSubmit = async (e) => {
+        e.preventDefault();
+       try {
+        const auth = getAuth();
+        await sendPasswordResetEmail(auth, userEmail)
+        toast.success("An Email is sent to your account")
+        } catch (error) {
+        toast.error("Couldn't send a reset password")
+       }
+    }
 
     return (
         // Page  Transition
@@ -41,10 +54,10 @@ const ForgotPassword = () => {
 
                         {/* ==================================== Form ================================================== */}
                         <div className='h-full  flex items-start justify-center mt-3 mr-5'>
-                            <form className='py-6 ml-3 w-full'>
-                                <div className='flex flex-col'>                               
-                                <h2 className='text-left  text-xl'>Forgot Your password?</h2>
-                                <p className='text-xs text-gray-400 mt-1 mb-2'>Please enter your email address. You will receive a link to create a new password via email</p>
+                            <form className='py-6 ml-3 w-full' onSubmit={onSubmit}>
+                                <div className='flex flex-col'>
+                                    <h2 className='text-left  text-xl'>Forgot Your password?</h2>
+                                    <p className='text-xs text-gray-400 mt-1 mb-2'>Please enter your email address. You will receive a link to create a new password via email</p>
                                 </div>
                                 {/* =====================================Form Input===================================== */}
                                 <div className='relative'>
@@ -81,13 +94,13 @@ const ForgotPassword = () => {
                                         <input type="checkbox" name="" id="remember-me" />
                                         <label htmlFor="remember-me" className='font-thin text-sm ml-2'>Remember me</label>
                                     </div>
-                                    <div className='font-thin text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out'>                                   
-                                    <Link className=' text-violet-400 cursor-pointer hover:text-violet-600 transition duration-400 ease-in-out' to="/sign-in"> Login instead</Link>
+                                    <div className='font-thin text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out'>
+                                        <Link className=' text-violet-400 cursor-pointer hover:text-violet-600 transition duration-400 ease-in-out' to="/sign-in"> Login instead</Link>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500' id='facebook' type='submit'>
+                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500' type='submit'>
                                         <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl  ' />
                                         <p className='font-bold'>Reset Password</p>
                                     </button>
