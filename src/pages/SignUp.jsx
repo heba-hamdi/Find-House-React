@@ -8,6 +8,8 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 import {db} from '../firebase';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import GoogleAuth from '../components/GoogleAuth';
+import FbAuth from '../components/FbAuth';
 
 
 
@@ -47,7 +49,7 @@ const SignUp = () => {
             navigate('/')
 
            } catch (error) {
-            toast.error("something went wrong")
+            toast.error("something went wrong with signing up")
         }
     }
 
@@ -76,18 +78,8 @@ const SignUp = () => {
 
                             <form onSubmit={onSubmit} className='py-6 ml-3 w-full'>
                                 <h2 className='float-left mb-5 text-xl'>Register</h2>
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-blue-600 rounded-md p-3 text-blue-600 mb-5 hover:bg-blue-600 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <TiSocialFacebook className='absolute bottom-9 left-3 text-xl  ' />
-                                        <p>Login with Facebook</p>
-                                    </button>
-                                </div>
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-red-500 mb-5 hover:bg-red-500 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl  ' />
-                                        <p>Login with Google</p>
-                                    </button>
-                                </div>
+                               <FbAuth/>
+                               <GoogleAuth/>
 
 
                                 {/* ===============================================================Form Inputs=================================================== */}

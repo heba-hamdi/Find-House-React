@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { RiCloseCircleFill, RiLockPasswordLine } from 'react-icons/ri'
 import { AiOutlineMail, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from 'react-icons/ai'
-import { TiSocialFacebook } from 'react-icons/ti'
+
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import {motion} from '../../node_modules/framer-motion/dist/framer-motion'
+import GoogleAuth from '../components/GoogleAuth';
+import FbAuth from '../components/FbAuth';
+
+
+
 const SignIn = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    })
+    const [formData, setFormData] = useState({email: "",password: ""});
+    const { email, password } = formData;
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleInput = (e) => {
         e.preventDefault();
@@ -19,8 +23,7 @@ const SignIn = () => {
             [e.target.id]: e.target.value
         }))
     }
-    const { email, password } = formData;
-    const [showPassword, setShowPassword] = useState(false);
+   
 
     return (
         // Page  Transition
@@ -49,18 +52,8 @@ const SignIn = () => {
                         <div className='h-full  flex items-start justify-center mt-3 mr-5'>
                             <form className='py-6 ml-3 w-full'>
                                 <h2 className='float-left mb-5 text-xl'>Login</h2>
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-blue-600 rounded-md p-3 text-blue-600 mb-5 hover:bg-blue-600 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <TiSocialFacebook className='absolute bottom-9 left-3 text-xl  ' />
-                                        <p>Login with Facebook</p>
-                                    </button>
-                                </div>
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-red-500 mb-5 hover:bg-red-500 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl  ' />
-                                        <p>Login with Google</p>
-                                    </button>
-                                </div>
+                                <FbAuth/>
+                                <GoogleAuth/>
 
                                 <div className='mb-4 before:border-t before:text-gray-300 flex before:flex-1 items-center after:border-t after:text-gray-300 flex after:flex-1'>
                                     <p className='mx-4 font-medium text-center text-sm'>Or</p>
