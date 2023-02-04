@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { RiCloseCircleFill, RiLockPasswordLine } from 'react-icons/ri'
 import { AiOutlineMail, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from 'react-icons/ai'
-
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import {motion} from '../../node_modules/framer-motion/dist/framer-motion'
+import { motion } from '../../node_modules/framer-motion/dist/framer-motion'
 import GoogleAuth from '../components/GoogleAuth';
 import FbAuth from '../components/FbAuth';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from 'react-toastify';
+
+
 
 
 
 const SignIn = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({email: "",password: ""});
+    const [formData, setFormData] = useState({ email: "", password: "" });
     const { email, password } = formData;
     const [showPassword, setShowPassword] = useState(false);
 
@@ -23,20 +26,32 @@ const SignIn = () => {
             [e.target.id]: e.target.value
         }))
     }
-   
 
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+       try {
+       
+        const auth = getAuth();
+        const userCredential= await signInWithEmailAndPassword(auth, email, password);
+        const user=  userCredential.user;
+        if(user)navigate("/")
+       } catch (error) {
+        toast.error("Check your email & password")
+       }
+
+    }
     return (
         // Page  Transition
-        <motion.section 
-        className='fixed inset-0 bg-black bg-opacity-80 bg-blur-sm'
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        exit={{opacity:0}}
+        <motion.section
+            className='fixed inset-0 bg-black bg-opacity-80 bg-blur-sm'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
         >
             <div className='flex justify-center items-center w-full h-screen my-5 pr-14'>
 
                 <div className='grid w-[400px] lg:grid-cols-2 lg:w-[800px] bg-white m-auto text-center font-semibold rounded-md relative'>
-                    <div className='absolute top-[-2%] right-[-2%]'><RiCloseCircleFill className='  rounded-full text-3xl text-red-500 bg-white cursor-pointer' onClick={()=>navigate("/")} /></div>
+                    <div className='absolute top-[-2%] right-[-2%]'><RiCloseCircleFill className='  rounded-full text-3xl text-red-500 bg-white cursor-pointer' onClick={() => navigate("/")} /></div>
                     <div className='flex flex-col '>
                         <button className='pb-1 mt-4'>Login</button>
                         <div className='md:my-3 flex items-center h-full'>
@@ -50,10 +65,10 @@ const SignIn = () => {
 
                         {/* =================================== Form====================================================== */}
                         <div className='h-full  flex items-start justify-center mt-3 mr-5'>
-                            <form className='py-6 ml-3 w-full'>
+                            <form className='py-6 ml-3 w-full' onSubmit={onFormSubmit}>
                                 <h2 className='float-left mb-5 text-xl'>Login</h2>
-                                <FbAuth/>
-                                <GoogleAuth/>
+                                <FbAuth />
+                                <GoogleAuth />
 
                                 <div className='mb-4 before:border-t before:text-gray-300 flex before:flex-1 items-center after:border-t after:text-gray-300 flex after:flex-1'>
                                     <p className='mx-4 font-medium text-center text-sm'>Or</p>
@@ -80,10 +95,10 @@ const SignIn = () => {
                                     </div>
                                     <div className='font-thin text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out'><Link to="/forgot-password">Lost your password?</Link></div>
                                 </div>
-                                
+
                                 <div>
-                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500' id='facebook' type='submit'>
-                                        <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl  ' />
+                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500' type='submit'>
+                                        <AiOutlineGoogle className='absolute bottom-9 left-3 text-xl' />
                                         <p className='font-bold'>Login</p>
                                     </button>
                                 </div>
