@@ -1,46 +1,90 @@
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth, signOut, updateProfile } from 'firebase/auth';
+import { doc, updateDoc } from "firebase/firestore"; 
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import {db} from '../firebase';
 
 const Profile = () => {
-    const navigate=useNavigate();
-    const auth=getAuth();
-    const[formData, setFormData]=useState({
-        name:auth.currentUser.displayName,
-        email:auth.currentUser.email
+    const navigate = useNavigate();
+    const auth = getAuth();
+    const [changeDetails, setChangeDetails] = useState(false)
+    const [formData, setFormData] = useState({
+        name: auth.currentUser.displayName,
+        email: auth.currentUser.email
     })
 
-    const {name, email}=formData;
+    const { name, email } = formData;
     console.log(name, email);
-    
 
-    const logout=()=>{
+
+    const logout = () => {
         signOut(auth);
         navigate('/');
     }
 
+    const onChange = (e) => {
+        setFormData((prevState) => {
+            return (
+                {
+                    ...prevState,
+                    [e.target.id]: e.target.value
+                }
+            )
+
+        })
+    }
+
+    const submitChange = async () => {
+        try {
+            if (auth.currentUser.displayName !== name) {
+                const auth = getAuth();
+                await updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+                const docRef=doc(db, "users", auth.currentUser.uid);
+                await updateDoc(docRef, {
+                    name:name
+                })
+
+                toast.success("Username is updated")
+            }
+
+          
+
+        } catch (error) {
+            toast.error("Couldn't update the username")
+        }
+    }
+
+    const changeandsubmit = () => {
+        changeDetails && submitChange();
+        setChangeDetails(prevState => !prevState)
+    }
+
     return (
         <>
-        <section className='max-w-7xl m-auto mt-6 p-4 mb-6 md:py-4 md:mx-3'>
-            <h1 className='text-3xl font-semibold pt-6'>My Profile</h1>
-            <p className='text-sm text-gray-500 mt-1 mb-6'>We are glad to see you again!</p>
-            <div className='bg-white rounded-md flex flex-col md:justify-between md:flex-row'>
-                <h2 className='mx-6 my-3 md:py-6'>Profile information</h2>
-                <div className='w-3/4 m-6'>
-                    <form className='md:m-6 md:py-6'>
-                        <input type="text" className='w-full border border-slate-300 p-2 rounded-md mb-3' disabled id='name' value={name} />
-                        <input type="email" className='w-full border border-slate-300 p-2 rounded-md' disabled id='email' value={email} />
-                        <div className='flex flex-col md:flex-row md:justify-between'>
-                            <p className='text-xs md:text-sm mt-3 text-gray-400'>Do you want to change your username?
-                                <span className='ml-1 font-semibold text-red-400 hover:text-red-600 cursor-pointer'>Edit</span>
-                            </p>
-                            <p onClick={logout} className='font-semibold text-sm text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out cursor-pointer mt-3'>Sign out</p>
-                        </div>
-                    </form>
+            <section className='max-w-7xl m-auto mt-6 p-4 mb-6 md:py-4 md:mx-3'>
+                <h1 className='text-3xl font-semibold pt-6'>My Profile</h1>
+                <p className='text-sm text-gray-500 mt-1 mb-6'>We are glad to see you again!</p>
+                <div className='bg-white rounded-md flex flex-col md:justify-between md:flex-row'>
+                    <h2 className='mx-6 my-3 md:py-6'>Profile information</h2>
+                    <div className='w-3/4 m-6'>
+                        <form className='md:m-6 md:py-6'>
+                            <input type="text" className={!changeDetails ? 'w-full border border-slate-300 p-2 rounded-md mb-3' : 'w-full border border-slate-300 p-2 rounded-md mb-3 bg-red-200'} disabled={!changeDetails} id='name' value={name} onChange={onChange} />
+                            <input type="email" className='w-full border border-slate-300 p-2 rounded-md' disabled id='email' value={email} />
+                            <div className='flex flex-col md:flex-row md:justify-between'>
+                                <p className='text-xs md:text-sm mt-3 text-gray-400'>Do you want to change your username?
+                                    <span className='ml-1 font-semibold text-red-400 hover:text-red-600 cursor-pointer' onClick={changeandsubmit}>
+                                        {!changeDetails ? "Edit" : "Apply Changes"}</span>
+                                </p>
+                                <p onClick={logout} className='font-semibold text-sm text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out cursor-pointer mt-3'>Sign out</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </>
     );
 }

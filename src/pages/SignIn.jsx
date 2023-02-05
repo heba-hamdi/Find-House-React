@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RiCloseCircleFill, RiLockPasswordLine } from 'react-icons/ri'
+import { RiCloseCircleFill } from 'react-icons/ri'
 import { AiOutlineMail, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from 'react-icons/ai'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
