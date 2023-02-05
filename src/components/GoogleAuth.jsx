@@ -7,7 +7,7 @@ import { db } from '../firebase';
 import { useNavigate } from 'react-router';
 
 const OAuth = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const onGoogleClick = async () => {
         try {
             const auth = getAuth();
@@ -25,12 +25,13 @@ const OAuth = () => {
                     email: user.email,
                     timestamp: serverTimestamp(),
                 });
-                toast.success("Login is successful")
-                navigate("/");
+              
                 if (!user.email) {
                     user.email = user.providerData[0].email;
-                  }
+                }
             }
+            toast.success("Login is successful")
+            navigate("/profile");
         } catch (error) {
             toast.error("Couldn't authorize with Google")
             console.log(error);

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { motion } from '../../node_modules/framer-motion/dist/framer-motion'
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from 'react-toastify';
+import FbAuth from '../components/FbAuth';
+import GoogleAuth from '../components/GoogleAuth'
 
 
 const ForgotPassword = () => {
@@ -73,18 +75,8 @@ const ForgotPassword = () => {
 
                                 {/* =================================Login================================================= */}
 
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-blue-600 rounded-md p-3 text-blue-600 mb-5 hover:bg-blue-600 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <TiSocialFacebook className='absolute bottom-9 left-3 text-xl  ' />
-                                        <p>Login with Facebook</p>
-                                    </button>
-                                </div>
-                                <div className='relative'>
-                                    <button className='w-full font-normal border border-red-500 rounded-md p-3 text-red-500  hover:bg-red-500 hover:text-white transition duration-500 ease-in-out' id='facebook'>
-                                        <AiOutlineGoogle className='absolute bottom-4 left-3 text-xl  ' />
-                                        <p>Login with Google</p>
-                                    </button>
-                                </div>
+                               <FbAuth/>
+                               <GoogleAuth/>
 
 
 
