@@ -8,14 +8,75 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'Helvetica Neue',sans-serif;
-  color:#484848;
+  font-family: 'Helvetica Neue', sans-serif;
+  /* color:#484848; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- background-color: #F7F7F7;
+  background-color: #F7F7F7;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.main{
+  display: flex;
+  position: relative;
+}
+
+input[type=checkbox]{
+  visibility: hidden;
+}
+
+.geekmark{
+  position: absolute;
+  border: 1px solid rgba(50, 50, 50, 0.278);
+  width: 20px;
+  height: 20px;
+  top:50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.main:hover input ~ .geekmark {
+  background-color: white;
+ 
+}
+
+.main input:active ~ .geekmark {
+  background-color: #ef4444;
+  
+}
+
+.main input:checked ~ .geekmark {
+  background-color: #ef4444;
+  border: none;
+ 
+}
+
+.geekmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  
+}
+
+.main input:checked ~ .geekmark:after {
+  display: block; 
+}
+
+.main .geekmark:after {
+  left: 40%;
+  bottom:30%;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  
 }

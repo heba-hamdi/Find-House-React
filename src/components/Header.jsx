@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
-import {AiOutlineUser} from 'react-icons/ai'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {AiOutlineUser,AiOutlinePlus} from 'react-icons/ai'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 
 const Header = () => {
   const [navLinkState, setNavLinkState]=useState("Login/Registeration");
+  const [loggedUser, setLoggedUser]=useState(false);
   let location = useLocation();
   const navigate = useNavigate();
 
@@ -18,9 +19,11 @@ const Header = () => {
   const auth = getAuth();
   onAuthStateChanged(auth,(user)=>{
     if(user){
-      setNavLinkState("Profile")
+      setNavLinkState("Profile");
+      setLoggedUser(true)
     }else{
       setNavLinkState("Login/Registeration")
+      setLoggedUser(false)
     }
   })
 
@@ -39,7 +42,12 @@ const Header = () => {
         <ul className='invisible flex md:space-x-10 md:visible'>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/') && "border-b-red-500"}`} onClick={() => navigate('/')}>Home</li>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/offers') && "border-b-red-500"}`} onClick={() => navigate('/offers')}>Offers</li>
-          <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up') ? "border-b-red-500": "" } || ${pathMatchRoute('/profile')? "border-b-red-500": "" }`} onClick={() => (navigate('/profile'))}><AiOutlineUser className='text-2xl pl-2'/>{navLinkState}</li>
+          <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up') ? "border-b-red-500": "" } || ${pathMatchRoute('/profile')? "border-b-red-500": "" }`} onClick={() => (navigate('/profile'))}><AiOutlineUser className='text-2xl'/>{navLinkState}</li>
+          
+            <button className='bg-red-500 text-white rounded-3xl px-3 m-3 hover:bg-red-600'>
+            <Link to={loggedUser? "/create-listing": "/sign-in"} className='flex justify-center items-center'><AiOutlinePlus className='text-white mr-1'/> <span className='mr-1'>Create Listing</span></Link>
+            </button>
+          
         </ul>
       </header>
     </div>

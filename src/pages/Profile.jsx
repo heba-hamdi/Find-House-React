@@ -3,8 +3,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { db } from '../firebase';
+import {FcHome} from 'react-icons/fc'
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -83,6 +85,14 @@ const Profile = () => {
                                     <p onClick={logout} className='font-semibold text-sm text-sm text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out cursor-pointer mt-3'>Sign out</p>
                                 </div>
                             </form>
+                            <div className='md:m-6'>
+                            <button type="submit" className="bg-red-500 text-white py-2 w-full rounded-lg hover:bg-red-600 " >
+                                <Link to="/create-listing" className='flex justify-center items-center'>
+                                    <FcHome className='mr-2 text-3xl bg-slate-100 p-1 rounded-full border-2'/>
+                                    <p className='text-lg'>Sell/Rent your House</p> </Link>
+                            </button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div> 
