@@ -28,6 +28,14 @@ const CreateListing = () => {
     { value: 5, label: 5 },
     { value: "other", label: "other" },
   ];
+  const Bathrooms = [
+    { value: 1, label: 1 },
+    { value: 2, label: 2 },
+    { value: 3, label: 3 },
+    { value: 4, label: 4 },
+    { value: 5, label: 5 },
+    { value: "other", label: "other" },
+  ];
 
   const Country = [
     { value: "Egypt", label: "Egypt" },
@@ -45,9 +53,15 @@ const CreateListing = () => {
 
 
   const selectStyle = {
-    control: (base) => ({
+    control: (base, state) => ({
       ...base,
       minHeight: 32,
+      boxShadow: "none",
+      "&:focus-within": {
+        borderColor: "#000",
+        boxShadow: "0 0 0.2rem rgba(233, 105, 71, 0.25)",
+        borderWidth:"2px"
+      }
 
     }),
     dropdownIndicator: (base) => ({
@@ -66,22 +80,12 @@ const CreateListing = () => {
     }
   };
 
-  // const selectStyle={
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-
-  //     console.log({ data, isDisabled, isFocused, isSelected });
-  //     return {
-  //       ...styles,
-  //       backgroundColor: isChecked ? "#EF4444" : null,
-  //       color: isFocused ? "#fff" : "#000",
-
-  //     };
-  //   }
-  // }
   const [formData, setFormData] = useState({
     type: "",
     name: "",
-    description: ""
+    description: "",
+    Bathrooms:1,
+    Rooms:1
   })
   const { type, name, description } = formData;
   const [checked, setChecked] = React.useState(false);
@@ -120,16 +124,16 @@ const CreateListing = () => {
                 <div className='flex justify-between'>
                   <div className='flex flex-col w-full mr-3'>
                     <label htmlFor='name' className='font-semibold text-sm mb-2 mt-3'>Type</label>
+                  
                     <Select
                       defaultValue={Types[0]}
                       label="Single select"
                       options={Types}
                       styles={selectStyle}
-                      classNames={{
-                        control: (state) =>
-                          state.isFocused ? 'border-red-600' : 'border-grey-300',
-                      }}
-                    />
+                      classNames=
+                       'focus:outline-red-500'
+                                          />
+                    
                   </div>
                   <div className='flex flex-col w-full'>
                     <label htmlFor='name' className='font-semibold text-sm mb-2 mt-3'>Status</label>
@@ -154,7 +158,7 @@ const CreateListing = () => {
                     <label htmlFor='name' className='font-semibold text-sm mb-2'>Area</label>
                     <input type="text" id='name' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-3" />
                   </div>
-                  <div className='flex flex-col w-full'>
+                  <div className='flex flex-col w-full  mr-3'>
                     <label htmlFor='name' className='font-semibold text-sm mb-2'>Rooms</label>
 
                     <Select
@@ -163,6 +167,19 @@ const CreateListing = () => {
                       options={Rooms}
                       styles={selectStyle}
                       padding-top={"20px"}
+                      id="rooms"
+                    />
+                  </div>
+                  <div className='flex flex-col w-full'>
+                    <label htmlFor='name' className='font-semibold text-sm mb-2'>Bathrooms</label>
+
+                    <Select
+                      defaultValue={Bathrooms[0]}
+                      label="Single select"
+                      options={Bathrooms}
+                      styles={selectStyle}
+                      padding-top={"20px"}
+                      id="bathrooms"
                     />
                   </div>
                 </div>
