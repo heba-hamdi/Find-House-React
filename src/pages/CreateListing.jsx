@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Select from "react-select";
 import CheckInput from '../components/CheckInput';
+import { useDropzone } from 'react-dropzone';
+import { BsUpload } from 'react-icons/bs'
+import { Link } from 'react-router-dom';
 
 const CreateListing = () => {
 
@@ -60,7 +63,7 @@ const CreateListing = () => {
       "&:focus-within": {
         borderColor: "#000",
         boxShadow: "0 0 0.2rem rgba(233, 105, 71, 0.25)",
-        borderWidth:"2px"
+        borderWidth: "2px"
       }
 
     }),
@@ -81,11 +84,11 @@ const CreateListing = () => {
   };
 
   const [formData, setFormData] = useState({
-    type: "",
+    type: "rent",
     name: "",
     description: "",
-    Bathrooms:1,
-    Rooms:1
+    Bathrooms: 1,
+    Rooms: 1
   })
   const { type, name, description } = formData;
   const [checked, setChecked] = React.useState(false);
@@ -100,18 +103,40 @@ const CreateListing = () => {
     )
   )
 
+  const [files, setFiles] = useState([])
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    maxFiles: 3,
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map(file => Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        }))
+      )
+      console.log(acceptedFiles);
+
+    }
+  })
+
+  const images = files.map(file => (
+    <img key={file.name} src={file.preview}
+      alt="image" style={{ width: '200px', height: '200px' }} className="rounded-md mb-8" />
+  ))
+
+
   return (
     <>
-      <section className='max-w-7xl m-auto px-6 lg:px-2 pt-5' >
-        <div className='w-full flex flex-col items-start'>
-          <h1 className='text-3xl font-semibold pt-6 '>Add New Property</h1>
-          <p className='text-sm text-gray-500 mt-1 mb-6'>We are glad to see you again!</p>
-        </div>
+      <form>
+        <section className='max-w-7xl m-auto px-6 lg:px-2 pt-5' >
+          <div className='w-full flex flex-col items-start'>
+            <h1 className='text-3xl font-semibold pt-6 '>Add New Property</h1>
+            <p className='text-sm text-gray-500 mt-1 mb-6'>We are glad to see you again!</p>
+          </div>
 
-        <div className='bg-white rounded-md m-auto'>
-          <h2 className='mx-6 pt-6 text-lg'>Create Listing</h2>
-          <div className='mx-6 mt-4'>
-            <form>
+          <div className='bg-white rounded-md m-auto'>
+            <h2 className='mx-6 pt-6 text-lg'>Create Listing</h2>
+            <div className='mx-6 mt-4'>
+
               <div className='w-full mb-5'>
                 <button type='button' id='sell' name='sell' className={`px-4 py-2 rounded-lg mr-3 ${type === "sell" ? "bg-red-500 text-white border border-white" : "bg-white text-red-500 border border-red-500"}`} onClick={onChange}>Sell</button>
                 <button type='button' id='rent' name="rent" className={`px-4 py-2 rounded-lg mr-3 ${type === "rent" ? "bg-red-500 text-white border border-white" : "bg-white text-red-500 border border-red-500"}`} onClick={onChange} >Rent</button>
@@ -123,25 +148,27 @@ const CreateListing = () => {
                 <textarea id='description' value={description} onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3" rows="4" cols="50"></textarea>
                 <div className='flex justify-between'>
                   <div className='flex flex-col w-full mr-3'>
-                    <label htmlFor='name' className='font-semibold text-sm mb-2 mt-3'>Type</label>
-                  
+                    <label htmlFor='types' className='font-semibold text-sm mb-2 mt-3'>Type</label>
+
                     <Select
                       defaultValue={Types[0]}
                       label="Single select"
                       options={Types}
                       styles={selectStyle}
                       classNames=
-                       'focus:outline-red-500'
-                                          />
-                    
+                      'focus:outline-red-500'
+                      id='types'
+                    />
+
                   </div>
                   <div className='flex flex-col w-full'>
-                    <label htmlFor='name' className='font-semibold text-sm mb-2 mt-3'>Status</label>
+                    <label htmlFor='status' className='font-semibold text-sm mb-2 mt-3'>Status</label>
                     <Select
                       defaultValue={Status[0]}
                       label="Single select"
                       options={Status}
                       styles={selectStyle}
+                      id="status"
                       classNames={{
                         control: (state) =>
                           state.isFocused ? 'border-red-600' : 'border-grey-300',
@@ -150,16 +177,20 @@ const CreateListing = () => {
                   </div>
                 </div>
                 <div className='flex justify-between mt-5'>
-                  <div className='flex flex-col w-full'>
+                  <div className='flex flex-col w-full justify-center'>
                     <label htmlFor='name' className='font-semibold text-sm mb-2'>Price</label>
-                    <input type="text" id='name' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-3" />
+
+                    <div className='flex mr-3 items-center justify-center'>
+                      <input type="number" step="any" id='price' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-1 w-full" required />
+                      {type === 'rent' ?
+                        <p className='font-bold mb-3'>$/month</p> : <p className='font-bold mb-3'>$</p>
+                      }
+                    </div>
+
                   </div>
-                  <div className='flex flex-col w-full'>
-                    <label htmlFor='name' className='font-semibold text-sm mb-2'>Area</label>
-                    <input type="text" id='name' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-3" />
-                  </div>
+
                   <div className='flex flex-col w-full  mr-3'>
-                    <label htmlFor='name' className='font-semibold text-sm mb-2'>Rooms</label>
+                    <label htmlFor='rooms' className='font-semibold text-sm mb-2'>Rooms</label>
 
                     <Select
                       defaultValue={Rooms[0]}
@@ -171,7 +202,7 @@ const CreateListing = () => {
                     />
                   </div>
                   <div className='flex flex-col w-full'>
-                    <label htmlFor='name' className='font-semibold text-sm mb-2'>Bathrooms</label>
+                    <label htmlFor='bathrooms' className='font-semibold text-sm mb-2'>Bathrooms</label>
 
                     <Select
                       defaultValue={Bathrooms[0]}
@@ -190,18 +221,18 @@ const CreateListing = () => {
                 <button type='button' id='back' name='back' className="px-20 py-2 rounded-lg mr-3 bg-white text-red-500 border border-2 border-red-500 shadow-outline hover:bg-red-500 shadow-lg hover:text-white transition duration-200 ease-out" >Back</button>
                 <button type='submit' id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white border  border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
               </div>
-            </form>
+
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
 
-      <section className='max-w-7xl m-auto px-6 lg:px-2 pt-5 my-5' >
-        <div className='bg-white rounded-md m-auto'>
-          <h2 className='mx-6 mt-3 text-lg pt-6'>Location</h2>
-          <div className='mx-6 mt-4'>
+        <section className='max-w-7xl m-auto px-6 lg:px-2 pt-5 my-5' >
+          <div className='bg-white rounded-md m-auto'>
+            <h2 className='mx-6 mt-3 text-lg pt-6'>Location</h2>
+            <div className='mx-6 mt-4'>
 
-            <form>
+
               <div className='flex flex-col'>
                 <label htmlFor='address' className='font-semibold text-sm mb-2 mt-4'>Address</label>
                 <input type="text" id='address' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3" />
@@ -254,11 +285,37 @@ const CreateListing = () => {
                   <button type='submit' id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white border  border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
 
-      </section>
+            </div>
+          </div>
+        </section>
+
+
+        <section className='max-w-7xl m-auto px-6 lg:px-2 p-5 my-5' >
+          <div className='bg-white rounded-md m-auto'>
+            <h2 className='mx-6 mt-3 text-lg pt-6'>Property media</h2>
+            <div className='p-6'>
+              <div className='flex gap-4'>{images}</div>
+              <div className="w-full bg-gray-100 flex flex-col items-center py-12 mb-6 rounded-md" {...getRootProps()}>
+                <input {...getInputProps()} />
+                <BsUpload className='mb-3 text-6xl text-red-500' />
+                <p className="text-slate-700 font-bold text-xl">
+                  Drag and drop images here
+                </p>
+              </div>
+              <div>
+                <button type="submit" className="bg-black text-white py-2 w-full rounded-lg hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 active:shadow-lg " >
+                  <Link to="#" className='flex justify-center items-center'>                    
+                    <p className='text-lg font-bold'>Create a Listing</p> </Link>
+                </button>
+              </div>
+
+
+
+            </div>
+          </div>
+        </section>
+      </form>
     </>
   )
 }
