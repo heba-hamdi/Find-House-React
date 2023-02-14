@@ -4,6 +4,8 @@ import CheckInput from '../components/CheckInput';
 import { useDropzone } from 'react-dropzone';
 import { BsUpload } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
+import Loader from '../components/loader/Loader';
+import { toast } from 'react-toastify';
 
 const CreateListing = () => {
 
@@ -82,41 +84,59 @@ const CreateListing = () => {
       };
     }
   };
-
+  const [loading, setLoading] = useState(false);
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true)
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
     description: "",
     Bathrooms: 1,
-    Rooms: 1
+    Rooms: 1,
+    longitude: 0,
+    latitude: 0,
+
   })
-  const { type, name, description } = formData;
-  const [checked, setChecked] = React.useState(false);
+  const { type, name, description, longitude, latitude } = formData;
 
 
-  const onChange = (e) => (
-    setFormData(
-      (prevState) => ({
+  const onChange = (e) => {
+    if (e.target.files) {
+      setFormData((prevState) => ({
         ...prevState,
-        type: e.target.name
-      })
-    )
-  )
+        images: e.target.files
+      }))
+    }
+
+    if (!e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: e.target.value
+      }))
+    }
+
+  }
+
+
+
 
   const [files, setFiles] = useState([])
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
-    maxFiles: 3,
-    onDrop: (acceptedFiles) => {
+    maxFiles: 6,
+    onDrop: (acceptedFiles, maxFiles) => {
+      if (maxFiles.length > 6) {
+        toast.error("Maximum 6 images")
+      }
       setFiles(
         acceptedFiles.map(file => Object.assign(file, {
           preview: URL.createObjectURL(file)
         }))
       )
-      console.log(acceptedFiles);
-
     }
   })
+
+
+
 
   const images = files.map(file => (
     <img key={file.name} src={file.preview}
@@ -124,9 +144,17 @@ const CreateListing = () => {
   ))
 
 
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true)
+  }
+
+
+
   return (
     <>
-      <form>
+      <form onSubmit={onSubmit}>
         <section className='max-w-7xl m-auto px-6 lg:px-2 pt-5' >
           <div className='w-full flex flex-col items-start'>
             <h1 className='text-3xl font-semibold pt-6 '>Add New Property</h1>
@@ -181,7 +209,7 @@ const CreateListing = () => {
                     <label htmlFor='name' className='font-semibold text-sm mb-2'>Price</label>
 
                     <div className='flex mr-3 items-center justify-center'>
-                      <input type="number" step="any" id='price' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-1 w-full" required />
+                      <input type="number" step="any" id='price' onChange={onChange} className="border border-slate-200 rounded-md mb-4 p-3 mr-1 w-full" />
                       {type === 'rent' ?
                         <p className='font-bold mb-3'>$/month</p> : <p className='font-bold mb-3'>$</p>
                       }
@@ -218,8 +246,8 @@ const CreateListing = () => {
 
 
               <div className='w-full py-5 flex justify-between'>
-                <button type='button' id='back' name='back' className="px-20 py-2 rounded-lg mr-3 bg-white text-red-500 border border-2 border-red-500 shadow-outline hover:bg-red-500 shadow-lg hover:text-white transition duration-200 ease-out" >Back</button>
-                <button type='submit' id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white border  border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
+                <button id='back' name='back' className="px-20 py-2 rounded-lg mr-3 bg-white text-red-500  border-2 border-red-500 shadow-outline hover:bg-red-500 shadow-lg hover:text-white transition duration-200 ease-out" >Back</button>
+                <button id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white  border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
               </div>
 
             </div>
@@ -267,6 +295,19 @@ const CreateListing = () => {
                   </div>
                 </div>
 
+                {!geolocationEnabled && (
+                  <div className='flex justify-between gap-3'>
+                    <div className='w-full'>
+                      <p className='font-semibold text-sm mb-2'>Latitude (for Google Maps)</p>
+                      <input type="number" id='latitude' value={latitude} min="-90" max="90" onChange={onChange} className=" w-full border border-slate-200 rounded-md mb-4 p-3 mr-3" />
+                    </div>
+                    <div className='w-full'>
+                      <p className='font-semibold text-sm mb-2'>Longitude (for Google Maps)</p>
+                      <input type="number" id='longitude' value={longitude} min="-180" max="180" onChange={onChange} className="w-full border border-slate-200 rounded-md mb-4 p-3 mr-3" />
+                    </div>
+                  </div>
+                )}
+
                 <div className='flex justify-between w-2/4'>
                   <div className='flex flex-col'>
                     <h2 className='my-3 text-lg pt-6'>Amenities</h2>
@@ -281,8 +322,8 @@ const CreateListing = () => {
                 </div>
 
                 <div className='w-full py-6 flex justify-between'>
-                  <button type='button' id='back' name='back' className="px-20 py-2 rounded-lg mr-3 bg-white text-red-500 border border-2 border-red-500 shadow-outline hover:bg-red-500 shadow-lg hover:text-white transition duration-200 ease-out" >Back</button>
-                  <button type='submit' id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white border  border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
+                  <button type='button' id='back' name='back' className="px-20 py-2 rounded-lg mr-3 bg-white text-red-500  border-2 border-red-500 shadow-outline hover:bg-red-500 shadow-lg hover:text-white transition duration-200 ease-out" >Back</button>
+                  <button id='next' name="nextrent" className="px-20 py-2 rounded-lg mr-3 bg-red-500 text-white border-2 border-red-500 shadow-outline hover:bg-white shadow-lg hover:text-red-500 transition duration-200 ease-out">Next</button>
                 </div>
               </div>
 
@@ -295,23 +336,21 @@ const CreateListing = () => {
           <div className='bg-white rounded-md m-auto'>
             <h2 className='mx-6 mt-3 text-lg pt-6'>Property media</h2>
             <div className='p-6'>
-              <div className='flex gap-4'>{images}</div>
+              <div className='flex gap-4 w-full'>{images}</div>
               <div className="w-full bg-gray-100 flex flex-col items-center py-12 mb-6 rounded-md" {...getRootProps()}>
-                <input {...getInputProps()} />
+                <input type="file" {...getInputProps()} />
                 <BsUpload className='mb-3 text-6xl text-red-500' />
                 <p className="text-slate-700 font-bold text-xl">
                   Drag and drop images here
+                  <p className='text-center text-sm text-slate-600 font-normal'>(max 6 images)</p>
                 </p>
               </div>
               <div>
                 <button type="submit" className="bg-black text-white py-2 w-full rounded-lg hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 active:shadow-lg " >
-                  <Link to="#" className='flex justify-center items-center'>                    
-                    <p className='text-lg font-bold'>Create a Listing</p> </Link>
+                  <div to="" className='flex justify-center items-center'>
+                    <p className='text-lg font-bold'>Create a Listing</p> </div>
                 </button>
               </div>
-
-
-
             </div>
           </div>
         </section>
