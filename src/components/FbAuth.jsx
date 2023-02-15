@@ -2,7 +2,7 @@ import React from 'react'
 import { getAuth, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
 import { toast } from 'react-toastify';
 import { TiSocialFacebook } from 'react-icons/ti'
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp, setDoc  } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router';
 

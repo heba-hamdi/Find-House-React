@@ -6,6 +6,11 @@ import { BsUpload } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 import Loader from '../components/loader/Loader';
 import { toast } from 'react-toastify';
+import { ref, getDownloadURL, uploadBytes,getStorage  } from "firebase/storage";
+import {updateDoc, doc, arrayUnion, addDoc, collection } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { v4 as uuidv4 } from 'uuid';
+import { db } from '../firebase';
 
 const CreateListing = () => {
 
@@ -84,6 +89,7 @@ const CreateListing = () => {
       };
     }
   };
+  const auth=getAuth();
   const [loading, setLoading] = useState(false);
   const [geolocationEnabled, setGeolocationEnabled] = useState(true)
   const [formData, setFormData] = useState({
@@ -142,15 +148,38 @@ const CreateListing = () => {
     <img key={file.name} src={file.preview}
       alt="image" style={{ width: '200px', height: '200px' }} className="rounded-md mb-8" />
   ))
+  console.log(images[0])
 
+ 
 
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    // setLoading(true)
+    const storage = getStorage();
+   
+    await Promise.all(
+      files.map(image=>{
+        const user=auth.currentUser.uid;
+        const imageRef=ref(storage, `users/${user}/${image.path}`)
+        uploadBytes(imageRef,image, "data_url").then(async ()=>{
+          const downloadUrl=await getDownloadURL(imageRef)
+          console.log(imageRef)
+          console.log('hi')
+          console.log(downloadUrl)
+          await updateDoc(doc(db, 'users',user ), {
+            images:arrayUnion(downloadUrl)
+          }
+        
+          )
+        })
+      })
+    )
+   
   }
 
-
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <>
