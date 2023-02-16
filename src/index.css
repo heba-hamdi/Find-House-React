@@ -20,7 +20,7 @@ code {
     monospace;
 }
 
-.main{
+/* .main{
   display: flex;
   position: relative;
 }
@@ -79,4 +79,12 @@ input[type=checkbox]{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   
+} */
+
+.custom-btn::-webkit-file-upload-button{
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  padding:5px 10px;
+  margin:5px 20px 5px 0px
 }

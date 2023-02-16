@@ -87,7 +87,7 @@ const Profile = () => {
                             </form>
                             <div className='md:m-6'>
                             <button type="submit" className="bg-red-500 text-white py-2 w-full rounded-lg hover:bg-red-600 " >
-                                <Link to="/create-listing" className='flex justify-center items-center'>
+                                <Link to="/create-listings" className='flex justify-center items-center'>
                                     <FcHome className='mr-2 text-3xl bg-slate-100 p-1 rounded-full border-2'/>
                                     <p className='text-lg'>Sell/Rent your House</p> </Link>
                             </button>
