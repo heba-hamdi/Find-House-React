@@ -115,11 +115,22 @@ const Profile = () => {
                                         <p className='text-lg'>Sell/Rent your House</p> </Link>
                                 </button>
                             </div>
-                            <div className='w-full'>
+                          
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+            <section className='max-w-7xl mt-6 p-4 mb-6 md:py-4 md:mx-auto '>
+              
+                <div className='w-full'>                  
+                        <h2 className='mx-6 my-3 md:pt-6 font-semibold'>My Listings</h2>
+                        <div className='w-full '>
                                 {!loading && listings.length > 0 && (
-                                    <>
-                                        <h2 className='mx-2 my-3 md:pt-6 font-semibold'>My Listings</h2>
-                                        <ul className='px-6 mt-6 mx-auto'>
+                                    <>                                    
+                                        <ul className='mt-6 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-3 w-3/4 md:w-full'>
                                             {listings.map(listing=>(
                                                 <ListingItem id={listing.id} listing={listing.data} key={listing.id}/>
                                             ))}
@@ -128,12 +139,8 @@ const Profile = () => {
                                 )}
                             </div>
                         </div>
-
-                    </div>
-
-                </div>
-
-            </section>
+                        
+                        </section>
 
         </>
     );

@@ -82,25 +82,7 @@ const CreateListings = () => {
       toast.error("Discounted price needs to be less than regular price");
       return;
     }
-    let geolocation = {};
-    let location;
-    if (geolocationEnabled) {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
-      );
-      const data = await response.json();
-      console.log(data);
-      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
-      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
-
-      location = data.status === "ZERO_RESULTS" && undefined;
-
-      if (location === undefined) {
-        setLoading(false);
-        toast.error("please enter a correct address");
-        return;
-      }
-    }
+   
     async function storeImage(image) {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
@@ -129,7 +111,7 @@ const CreateListings = () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            resolve('File available at', downloadURL);
+            resolve(downloadURL);
           });
         }
       );
@@ -221,6 +203,7 @@ const CreateListings = () => {
             <input
               type="number"
               id="bathrooms"
+              step=".01"
               value={bathrooms}
               onChange={onChange}
               min="1"
