@@ -46,7 +46,7 @@ const Header = () => {
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up') ? "border-b-red-500": "" } || ${pathMatchRoute('/profile')? "border-b-red-500": "" }`} onClick={() => (navigate('/profile'))}><AiOutlineUser className='text-2xl'/>{navLinkState}</li>
           
             <button className='bg-red-500 text-white rounded-3xl px-3 m-3 hover:bg-red-600'>
-            <Link to={loggedUser? "/create-listing": "/sign-in"} className='flex justify-center items-center'><AiOutlinePlus className='text-white mr-1'/> <span className='mr-1'>Create Listing</span></Link>
+            <Link to={loggedUser? "/create-listings": "/sign-in"} className='flex justify-center items-center'><AiOutlinePlus className='text-white mr-1'/> <span className='mr-1'>Create Listing</span></Link>
             </button>
           
         </ul>

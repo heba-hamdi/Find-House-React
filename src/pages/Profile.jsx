@@ -1,5 +1,5 @@
 import { getAuth, signOut, updateProfile } from 'firebase/auth';
-import { collection, doc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -88,6 +88,22 @@ const Profile = () => {
         }
         fetchUserListings();
     }, []);
+
+    const onDelete= async (listingId)=>{
+        if(window.confirm("Are you sure you want to delete this listing?")){
+            await deleteDoc(doc(db, 'listings', listingId))
+        }
+        const updatedListing= listings.filter(listing=>
+             listing.id !== listingId
+        )
+
+        setListings(updatedListing)
+        toast.success("Listing deleted")
+    }
+    const onEdit= (listingId)=>{
+        navigate(`/edit-listing/${listingId}`)
+    }
+
     return (
         <>
             <section className='max-w-7xl mt-6 p-4 mb-6 md:py-4 md:mx-auto '>
@@ -132,7 +148,7 @@ const Profile = () => {
                                     <>                                    
                                         <ul className='mt-6 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-3 w-3/4 md:w-full'>
                                             {listings.map(listing=>(
-                                                <ListingItem id={listing.id} listing={listing.data} key={listing.id}/>
+                                                <ListingItem listingId={listing.id} listing={listing.data} key={listing.id} onDelete={()=>onDelete(listing.id)} onEdit={()=>onEdit(listing.id)} />
                                             ))}
                                         </ul>
                                     </>
