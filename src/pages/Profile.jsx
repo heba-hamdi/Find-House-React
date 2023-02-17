@@ -87,7 +87,7 @@ const Profile = () => {
             setLoading(false);
         }
         fetchUserListings();
-    }, []);
+    }, [auth.currentUser.uid]);
 
     const onDelete= async (listingId)=>{
         if(window.confirm("Are you sure you want to delete this listing?")){

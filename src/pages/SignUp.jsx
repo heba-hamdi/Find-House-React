@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { RiCloseCircleFill } from 'react-icons/ri'
 import { AiOutlineMail, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle, AiOutlineUser } from 'react-icons/ai'
-import { TiSocialFacebook } from 'react-icons/ti'
 import { Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {db} from '../firebase';
@@ -83,7 +82,7 @@ const SignUp = () => {
 
 
                                 {/* ===============================================================Form Inputs=================================================== */}
-                                <div className='mb-4 before:border-t before:text-gray-300 flex before:flex-1 items-center after:border-t after:text-gray-300 flex after:flex-1'>
+                                <div className='mb-4 before:border-t before:text-gray-300 before:flex-1 items-center after:border-t after:text-gray-300 flex after:flex-1'>
                                     <p className='mx-4 font-medium text-center text-sm'>Or</p>
                                 </div>
 
