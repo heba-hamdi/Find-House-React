@@ -42,6 +42,7 @@ const Header = () => {
         <ul className='invisible flex md:space-x-10 md:visible'>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/') && "border-b-red-500"}`} onClick={() => navigate('/')}>Home</li>
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/offers') && "border-b-red-500"}`} onClick={() => navigate('/offers')}>Offers</li>
+          {/* <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/listings') && "border-b-red-500"}`} onClick={() => navigate('/listings')}>Listings</li> */}
           <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${pathMatchRoute('/sign-in')? "border-b-red-500": "" } || ${pathMatchRoute('/sign-up') ? "border-b-red-500": "" } || ${pathMatchRoute('/profile')? "border-b-red-500": "" }`} onClick={() => (navigate('/profile'))}><AiOutlineUser className='text-2xl'/>{navLinkState}</li>
           
             <button className='bg-red-500 text-white rounded-3xl px-3 m-3 hover:bg-red-600'>
