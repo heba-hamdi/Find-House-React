@@ -12,7 +12,7 @@ const ListingItem = ({ listingId, listing, onDelete, onEdit }) => {
         {onEdit &&  <AiFillEdit className='cursor-pointer' onClick={()=>onEdit(listing.id)} />}       
         {onDelete && (<MdOutlineDeleteForever className='text-red-500 cursor-pointer' onClick={()=>onDelete(listing.id)}/>)}
       </div>
-      <Link to="">
+      <Link to={`/category/${listing.type}/${listingId}`}>
         <div>
           <div className='flex flex-col items-center relative pt-2 overflow-hidden'>
             <img src={listing.imgUrls} className="rounded-lg  md:w-[380px] h-[250px] w-full hover:scale-105 transition duration-300 ease-in-out object-cover" loading='lazy' />
