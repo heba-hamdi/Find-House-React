@@ -13,11 +13,15 @@ import SwiperCore, {
 } from "swiper";
 import "swiper/css/bundle";
 import { FaBed, FaBath, FaChair, FaParking } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import ContactLandlord from "../components/ContactLandlord";
 
 const Listing = () => {
   const params = useParams();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [landlordForm, setLandlordForm] = useState(false);
+  const auth = getAuth();
   SwiperCore.use([Navigation, Pagination, Autoplay]);
 
   useEffect(() => {
@@ -131,6 +135,20 @@ const Listing = () => {
                 Description
               </h2>
               <p className="text-gray-600">{listing.description}</p>
+
+              {auth.currentUser?.uid !== listing.userRef && !landlordForm && (
+                <div>
+                  <button
+                    className="w-full font-bold border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500"
+                    onClick={() => setLandlordForm(true)}
+                  >
+                    Contact Landlord
+                  </button>
+                </div>
+              )}
+              {landlordForm && (
+                <ContactLandlord userRef={listing.userRef} listing={listing} />
+              )}
             </div>
           </div>
         </div>
