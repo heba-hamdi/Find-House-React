@@ -22,6 +22,7 @@ const Listing = () => {
   const [loading, setLoading] = useState(true);
   const [landlordForm, setLandlordForm] = useState(false);
   const auth = getAuth();
+  const [showBtn, setShowBtn] = useState(true);
   SwiperCore.use([Navigation, Pagination, Autoplay]);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const Listing = () => {
     return <Loader />;
   }
   console.log(listing.imgUrls);
+
   return (
     <main>
       <Swiper
@@ -107,48 +109,86 @@ const Listing = () => {
           </div>
 
           <div className="bg-white mt-12 rounded-md">
-            <div className="m-6">
-              <ul className="flex space-x-4 py-10">
-                <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
-                  <FaBed className="mr-2" />
-                  {listing.bedrooms > 1
-                    ? `${listing.bedrooms} Beds`
-                    : `${listing.bedrooms} Bed`}
-                </li>
-                <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
-                  <FaBath className="mr-2" />
-                  {listing.bathrooms > 1
-                    ? `${listing.bathrooms} Baths`
-                    : `${listing.bathrooms} Bath`}
-                </li>
-                <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
-                  <FaChair className="mr-2" />
-                  {listing.furnished ? "Furnished" : "Not Furnished"}
-                </li>
-                <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
-                  <FaParking className="mr-2" />
-                  {listing.parking ? "Parking" : "No Parking"}
-                </li>
-              </ul>
+            <div className="m-6 ">
+              <div className=" mr-12">
+                <ul className="flex space-x-4 py-10">
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                    <FaBed className="mr-2" />
+                    {listing.bedrooms > 1
+                      ? `${listing.bedrooms} Beds`
+                      : `${listing.bedrooms} Bed`}
+                  </li>
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                    <FaBath className="mr-2" />
+                    {listing.bathrooms > 1
+                      ? `${listing.bathrooms} Baths`
+                      : `${listing.bathrooms} Bath`}
+                  </li>
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                    <FaChair className="mr-2" />
+                    {listing.furnished ? "Furnished" : "Not Furnished"}
+                  </li>
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                    <FaParking className="mr-2" />
+                    {listing.parking ? "Parking" : "No Parking"}
+                  </li>
+                </ul>
 
-              <h2 className="font-bold text-lg mb-3 text-gray-600">
-                Description
-              </h2>
-              <p className="text-gray-600">{listing.description}</p>
+                <h2 className="font-bold text-lg mb-3 text-gray-600">
+                  Description
+                </h2>
+                <p className="text-gray-600">{listing.description}</p>
 
-              {auth.currentUser?.uid !== listing.userRef && !landlordForm && (
-                <div>
-                  <button
-                    className="w-full font-bold border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500"
-                    onClick={() => setLandlordForm(true)}
-                  >
-                    Contact Landlord
-                  </button>
+                {auth.currentUser?.uid !== listing.userRef && !landlordForm && (
+                  <div>
+                    <button
+                      className="w-full font-bold border border-red-500 rounded-md p-3 text-white bg-red-500 mb-5 hover:bg-white hover:text-red-500 mt-3 transition duration-500"
+                      onClick={() => setLandlordForm(true)}
+                    >
+                      Contact Landlord
+                    </button>
+                  </div>
+                )}
+                {landlordForm && (
+                  <ContactLandlord
+                    userRef={listing.userRef}
+                    listing={listing}
+                  />
+                )}
+              </div>
+
+              <div>
+                <div className="relative">
+                  <iframe
+                    width="1000"
+                    height="400"
+                    id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=12665 W Village Ln, Playa Vista, CA 90094&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    className="mt-10 rounded-md"
+                  ></iframe>
+                  {showBtn && (
+                    <div className="absolute top-[40%] left-[30%] bg-gray-200/95 px-10 py-3 rounded-md transition-all duration-600 ease-in-out">
+                      <h3 className="font-bold mb-3 text-gray-600">Google</h3>
+                      <p>This page can't load Google Maps correctly.</p>
+                      <div className="flex justify-between mt-5">
+                        <p className="text-sm text-gray-500 ">
+                          Do you own this website ?
+                        </p>
+                        <button
+                          className="text-blue-500 border border-gray-400 rounded-md px-4 py-1 shadow-md hover:shadow-xl "
+                          onClick={() => setShowBtn(false)}
+                        >
+                          Ok
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-              {landlordForm && (
-                <ContactLandlord userRef={listing.userRef} listing={listing} />
-              )}
+              </div>
             </div>
           </div>
         </div>
