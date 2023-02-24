@@ -10,8 +10,10 @@ import "swiper/css/bundle";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "./loader/Loader";
+import { useNavigate } from "react-router";
 
 const Slider = () => {
+  const navigate = useNavigate();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -50,9 +52,14 @@ const Slider = () => {
           modules={[EffectFade]}
           autoplay={{ delay: 3000 }}
         >
-          {listing?.map((list) => {
+          {listing?.map((list, id) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide
+                key={id}
+                onClick={() =>
+                  navigate(`/category/${list.data.type}/${list.id}`)
+                }
+              >
                 <div
                   className="background relative bg-cover relative "
                   style={{
