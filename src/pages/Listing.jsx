@@ -59,7 +59,7 @@ const Listing = () => {
           return (
             <SwiperSlide>
               <div
-                className=" w-  background relative bg-cover"
+                className="   background relative bg-cover"
                 style={{
                   background: `url('${item}')`,
                   height: "600px",
