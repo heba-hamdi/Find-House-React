@@ -8,7 +8,7 @@ import SwiperCore, {
 } from "swiper";
 import "swiper/css/bundle";
 import { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "./loader/Loader";
 
@@ -19,7 +19,8 @@ const Slider = () => {
     const fetchListing = async () => {
       const listings = [];
       const listingRef = collection(db, "listings");
-      const querySnapshot = await getDocs(listingRef);
+      const q = query(listingRef, orderBy("timestamp", "desc"), limit(5));
+      const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach((doc) => {
         return listings.push({
@@ -53,7 +54,7 @@ const Slider = () => {
           slidesPerView={1}
           navigation
           pagination={{ type: "progressbar" }}
-          autoplay={1000}
+          autoplay
           effect={"Fade"}
           loop
         >
