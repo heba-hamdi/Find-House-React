@@ -85,7 +85,9 @@ const Slider = () => {
                       $
                       {list.data.discountPrice
                         ? list.data.discountPrice
-                        : list.data.regularPrice}
+                        : list.data.regularPrice
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       {list.data.type === "rent" ? " / month" : ""}
                     </h3>
                   </div>

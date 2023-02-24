@@ -161,15 +161,15 @@ const CreateListings = () => {
               <button
                 type="button"
                 id="type"
-                value="sell"
+                value="sale"
                 onClick={onChange}
                 className={`w-1/4 px-4 py-2 rounded-lg mr-3 ${
-                  type === "sell"
+                  type === "sale"
                     ? "bg-red-500 text-white border border-white"
                     : "bg-white text-red-500 border border-red-500 w-1/4"
                 }`}
               >
-                sell
+                Sale
               </button>
               <button
                 type="button"

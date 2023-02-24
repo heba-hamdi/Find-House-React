@@ -15,8 +15,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 
 const EditListing = () => {
-  const params=useParams();
-  const [listing, setListing]=useState(null)
+  const params = useParams();
+  const [listing, setListing] = useState(null);
   const auth = getAuth();
   const navigate = useNavigate();
   const [geolocationEnabled] = useState(false);
@@ -54,34 +54,30 @@ const EditListing = () => {
     images,
   } = formData;
 
-  useEffect(()=>{
-    if(listing && listing.userRef !== auth.currentUser.uid){
-      toast.error("You are not allowed to edit this listing")
-      navigate("/")
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You are not allowed to edit this listing");
+      navigate("/");
     }
-   }, [auth.currentUser.uid, navigate, listing])
+  }, [auth.currentUser.uid, navigate, listing]);
 
   useEffect(() => {
-    setLoading(true)
-    const fetchListing= async ()=>{
-     const docRef = doc(db, "listings", params.listingId);
-     const docSnap = await getDoc(docRef);
-     if(docSnap.exists){
-       setListing(docSnap.data())
-       setFormData({...docSnap.data()})
-        setLoading(false)
-     }else{
-      navigate('/')
-      toast.error("Listing doesn't exist")
-     }
-    }
-    
-    fetchListing()
-   }, [navigate,params.listingId ]);
+    setLoading(true);
+    const fetchListing = async () => {
+      const docRef = doc(db, "listings", params.listingId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data() });
+        setLoading(false);
+      } else {
+        navigate("/");
+        toast.error("Listing doesn't exist");
+      }
+    };
 
-   
-
-
+    fetchListing();
+  }, [navigate, params.listingId]);
 
   function onChange(e) {
     let boolean = null;
@@ -118,26 +114,30 @@ const EditListing = () => {
     async function storeImage(image) {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
-        const filename = `listings/${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
+        const filename = `listings/${auth.currentUser.uid}-${
+          image.name
+        }-${uuidv4()}`;
         const storageRef = ref(storage, filename);
         const uploadTask = uploadBytesResumable(storageRef, image);
-        uploadTask.on('state_changed',
+        uploadTask.on(
+          "state_changed",
           (snapshot) => {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
-              case 'paused':
-                console.log('Upload is paused');
+              case "paused":
+                console.log("Upload is paused");
                 break;
-              case 'running':
-                console.log('Upload is running');
+              case "running":
+                console.log("Upload is running");
                 break;
             }
           },
           (error) => {
-            reject(error)
+            reject(error);
           },
           () => {
             // Handle successful uploads on complete
@@ -165,7 +165,7 @@ const EditListing = () => {
     delete formDataCopy.images;
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
     console.log(formDataCopy);
-    const docRef = doc(db, "listings", params.listingId)
+    const docRef = doc(db, "listings", params.listingId);
     await updateDoc(docRef, formDataCopy);
     setLoading(false);
     toast.success("Listing Edited");
@@ -175,35 +175,42 @@ const EditListing = () => {
     return <Loader />;
   }
 
-  
-
   return (
     <main className="max-w-7xl m-auto px-6 lg:px-2 pt-5">
-      <div className='w-full flex flex-col items-start'>
-        <h1 className='text-3xl font-semibold pt-6 '>Edit Property</h1>
-        <p className='text-sm text-gray-500 mt-1 mb-6'>We are glad to see you again!</p>
+      <div className="w-full flex flex-col items-start">
+        <h1 className="text-3xl font-semibold pt-6 ">Edit Property</h1>
+        <p className="text-sm text-gray-500 mt-1 mb-6">
+          We are glad to see you again!
+        </p>
       </div>
-      <div className='bg-white rounded-md m-auto mb-12'>
-        <h2 className='mx-6 pt-6 text-lg font-semibold'>Edit Listing</h2>
-        <div className='mx-6 mt-4'>
-
-
+      <div className="bg-white rounded-md m-auto mb-12">
+        <h2 className="mx-6 pt-6 text-lg font-semibold">Edit Listing</h2>
+        <div className="mx-6 mt-4">
           <form onSubmit={onSubmit}>
             <div className="flex w-full mb-5">
               <button
                 type="button"
                 id="type"
-                value="sell"
+                value="sale"
                 onClick={onChange}
-                className={`w-1/4 px-4 py-2 rounded-lg mr-3 ${type === "sell" ? "bg-red-500 text-white border border-white" : "bg-white text-red-500 border border-red-500 w-1/4"}`}         >
-                sell
+                className={`w-1/4 px-4 py-2 rounded-lg mr-3 ${
+                  type === "sale"
+                    ? "bg-red-500 text-white border border-white"
+                    : "bg-white text-red-500 border border-red-500 w-1/4"
+                }`}
+              >
+                Sale
               </button>
               <button
                 type="button"
                 id="type"
                 value="rent"
                 onClick={onChange}
-                className={`w-1/4 px-4 py-2 rounded-lg mr-3 ${type === "rent" ? "bg-red-500 text-white border border-white" : "bg-white text-red-500 border border-red-500 "}`}
+                className={`w-1/4 px-4 py-2 rounded-lg mr-3 ${
+                  type === "rent"
+                    ? "bg-red-500 text-white border border-white"
+                    : "bg-white text-red-500 border border-red-500 "
+                }`}
               >
                 rent
               </button>
@@ -256,8 +263,11 @@ const EditListing = () => {
                 id="parking"
                 value={true}
                 onClick={onChange}
-                className={` mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${!parking ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={` mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  !parking
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 Yes
               </button>
@@ -266,8 +276,11 @@ const EditListing = () => {
                 id="parking"
                 value={false}
                 onClick={onChange}
-                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${parking ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  parking
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 no
               </button>
@@ -279,8 +292,11 @@ const EditListing = () => {
                 id="furnished"
                 value={true}
                 onClick={onChange}
-                className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${!furnished ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  !furnished
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 yes
               </button>
@@ -289,8 +305,11 @@ const EditListing = () => {
                 id="furnished"
                 value={false}
                 onClick={onChange}
-                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${furnished ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  furnished
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 no
               </button>
@@ -350,8 +369,11 @@ const EditListing = () => {
                 id="offer"
                 value={true}
                 onClick={onChange}
-                className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${!offer ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  !offer
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 yes
               </button>
@@ -360,8 +382,11 @@ const EditListing = () => {
                 id="offer"
                 value={false}
                 onClick={onChange}
-                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${offer ? "bg-white text-black border border-gray-300" : "bg-black text-white"
-                  }`}
+                className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-1/4 ${
+                  offer
+                    ? "bg-white text-black border border-gray-300"
+                    : "bg-black text-white"
+                }`}
               >
                 no
               </button>
@@ -382,7 +407,9 @@ const EditListing = () => {
                   />
                   {type === "rent" && (
                     <div className="">
-                      <p className="text-md w-full whitespace-nowrap">$ / Month</p>
+                      <p className="text-md w-full whitespace-nowrap">
+                        $ / Month
+                      </p>
                     </div>
                   )}
                 </div>
@@ -435,7 +462,6 @@ const EditListing = () => {
             >
               Edit Listing
             </button>
-
           </form>
         </div>
       </div>
