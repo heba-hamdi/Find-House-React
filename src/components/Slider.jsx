@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
   Navigation,
@@ -7,7 +7,6 @@ import SwiperCore, {
   EffectFade,
 } from "swiper";
 import "swiper/css/bundle";
-import { useEffect } from "react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "./loader/Loader";
@@ -15,28 +14,23 @@ import Loader from "./loader/Loader";
 const Slider = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  SwiperCore.use([Autoplay, Navigation, Pagination]);
   useEffect(() => {
-    const fetchListing = async () => {
-      const listings = [];
-      const listingRef = collection(db, "listings");
-      const q = query(listingRef, orderBy("timestamp", "desc"), limit(5));
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.forEach((doc) => {
+    async function fetchListings() {
+      const listingsRef = collection(db, "listings");
+      const q = query(listingsRef, orderBy("timestamp", "desc"), limit(5));
+      const querySnap = await getDocs(q);
+      let listings = [];
+      querySnap.forEach((doc) => {
         return listings.push({
           id: doc.id,
           data: doc.data(),
         });
       });
-
       setListing(listings);
-      //   console.log(listing);
-      if (listing) {
-        setLoading(false);
-        console.log("listing");
-      }
-    };
-    fetchListing();
+      setLoading(false);
+    }
+    fetchListings();
   }, []);
   if (loading) {
     return <Loader />;
@@ -49,14 +43,12 @@ const Slider = () => {
       <>
         <Swiper
           // install Swiper modules
-          modules={[Navigation, Autoplay, EffectFade]}
-          spaceBetween={50}
           slidesPerView={1}
           navigation
           pagination={{ type: "progressbar" }}
-          autoplay
-          effect={"Fade"}
-          loop
+          effect="fade"
+          modules={[EffectFade]}
+          autoplay={{ delay: 3000 }}
         >
           {listing?.map((list) => {
             return (
