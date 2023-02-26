@@ -61,7 +61,7 @@ const Slider = () => {
                 }
               >
                 <div
-                  className="background relative bg-cover relative "
+                  className="background relative bg-cover  "
                   style={{
                     background: `url('${list.data.imgUrls[0]}')`,
                     height: "600px",

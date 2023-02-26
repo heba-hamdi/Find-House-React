@@ -198,7 +198,7 @@ const Home = () => {
                 );
               })}
             </Swiper>
-            <Link to="/offers">
+            <Link to="/category/rents">
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more rents
               </p>
@@ -240,7 +240,7 @@ const Home = () => {
                 );
               })}
             </Swiper>
-            <Link to="/offers">
+            <Link to="/category/sale">
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more sale
               </p>
