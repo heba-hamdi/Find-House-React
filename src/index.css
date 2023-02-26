@@ -43,8 +43,13 @@ code {
  position: absolute;
 }
 
+.swiper-slide{
+  margin-bottom: 50px;
+}
+
 .swiper-pagination-bullet-active {
-  background-color: #000 !important;
+  background-color: #ef4444 !important;
+  
 }
 
 
