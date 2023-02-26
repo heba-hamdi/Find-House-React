@@ -57,7 +57,7 @@ const Header = () => {
           >
             <a href="/offers">Offers</a>
           </li>
-          {/* <li className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${pathMatchRoute('/listings') && "border-b-red-500"}`} onClick={() => navigate('/listings')}>Listings</li> */}
+
           <li
             className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${
               pathMatchRoute("/sign-in") ? "border-b-red-500" : ""

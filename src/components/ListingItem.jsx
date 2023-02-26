@@ -8,21 +8,22 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 const ListingItem = ({ listingId, listing, onDelete, onEdit }) => {
   return (
     <li className="w-full bg-white rounded-md m-auto relative shadow-lg">
-      <div className="flex text-xl absolute bottom-5 right-5 gap-2">
-        {onEdit && (
-          <AiFillEdit
-            className="cursor-pointer"
-            onClick={() => onEdit(listing.id)}
-          />
-        )}
-        {onDelete && (
-          <MdOutlineDeleteForever
-            className="text-red-500 cursor-pointer"
-            onClick={() => onDelete(listing.id)}
-          />
-        )}
-      </div>
       <Link to={`/category/${listing.type}/${listingId}`}>
+        <div className="flex text-xl absolute bottom-5 right-5 gap-2">
+          {onEdit && (
+            <AiFillEdit
+              className="cursor-pointer"
+              onClick={() => onEdit(listing.id)}
+            />
+          )}
+          {onDelete && (
+            <MdOutlineDeleteForever
+              className="text-red-500 cursor-pointer"
+              onClick={() => onDelete(listing.id)}
+            />
+          )}
+        </div>
+
         <div>
           <div className="flex flex-col items-center relative pt-2 overflow-hidden">
             <img
@@ -38,7 +39,7 @@ const ListingItem = ({ listingId, listing, onDelete, onEdit }) => {
             </Moment>
           </div>
           <p className="font-bold text-2xl pl-4 pt-3 truncate ">
-            {listing.name.charAt(0).toUpperCase() + listing.name.slice(1)}
+            {listing.name}
           </p>
           <div className="pl-4">
             <div className="flex items-center gap-2 text-gray-600 text-sm">

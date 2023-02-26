@@ -150,7 +150,7 @@ const Home = () => {
                     <ListingItem
                       key={listing.id}
                       listing={listing.data}
-                      id={listing.id}
+                      listingId={listing.id}
                     />
                   </SwiperSlide>
                 );
@@ -192,7 +192,7 @@ const Home = () => {
                     <ListingItem
                       key={listing.id}
                       listing={listing.data}
-                      id={listing.id}
+                      listingId={listing.id}
                     />
                   </SwiperSlide>
                 );
@@ -234,7 +234,7 @@ const Home = () => {
                     <ListingItem
                       key={listing.id}
                       listing={listing.data}
-                      id={listing.id}
+                      listingId={listing.id}
                     />
                   </SwiperSlide>
                 );
