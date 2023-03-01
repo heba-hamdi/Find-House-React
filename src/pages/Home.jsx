@@ -27,6 +27,7 @@ import ArticlesTips from "../components/ArticlesTips";
 import Partners from "../components/Partners";
 import TopFooter from "../components/footer/TopFooter";
 import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -262,6 +263,7 @@ const Home = () => {
       <Partners />
       <TopFooter />
       <MidFooter />
+      <BottomFooter />
     </div>
   );
 };
