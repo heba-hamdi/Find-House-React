@@ -25,7 +25,8 @@ import ChooseUS from "../components/ChooseUs";
 import Testimonials from "../components/Testimonials";
 import ArticlesTips from "../components/ArticlesTips";
 import Partners from "../components/Partners";
-import TopFooter from "../components/TopFooter";
+import TopFooter from "../components/footer/TopFooter";
+import MidFooter from "../components/footer/MidFooter";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -260,6 +261,7 @@ const Home = () => {
       <ArticlesTips />
       <Partners />
       <TopFooter />
+      <MidFooter />
     </div>
   );
 };
