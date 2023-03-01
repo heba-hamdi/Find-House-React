@@ -63,12 +63,12 @@ const MidFooter = () => {
         <div>
           <h3 className="font-bold mb-6 text-lg">Follow us</h3>
           <div className="flex gap-3 text-gray-500 text-xl ">
-            <FaFacebookF />
-            <AiOutlineTwitter />
-            <AiOutlineInstagram />
-            <BsPinterest />
-            <AiOutlineDribbble />
-            <AiOutlineGoogle />
+            <FaFacebookF className="hover:text-white cursor-pointer" />
+            <AiOutlineTwitter className="hover:text-white cursor-pointer" />
+            <AiOutlineInstagram className="hover:text-white cursor-pointer" />
+            <BsPinterest className="hover:text-white cursor-pointer" />
+            <AiOutlineDribbble className="hover:text-white cursor-pointer" />
+            <AiOutlineGoogle className="hover:text-white cursor-pointer" />
           </div>
           <h3 className="font-bold mb-4 text-lg mt-8">Subscribe</h3>
           <div className="flex gap-2">

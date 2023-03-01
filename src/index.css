@@ -57,11 +57,11 @@ code {
   background-color: #ef4444 !important;
 }
 
-html::-webkit-scrollbar{
+/* html::-webkit-scrollbar{
   display: none;
 }
 
 html{
   scrollbar-width: none;
-}
+} */
 

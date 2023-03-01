@@ -12,7 +12,7 @@ import { db } from "../firebase";
 import Loader from "./loader/Loader";
 import { useNavigate } from "react-router";
 
-const Slider = () => {
+const Slider = ({ nav }) => {
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -59,7 +59,10 @@ const Slider = () => {
                 onClick={() =>
                   navigate(`/category/${list.data.type}/${list.id}`)
                 }
+                className="relative"
               >
+                {/* Scroll Down Button */}
+
                 <div
                   className="background relative bg-cover cursor-pointer "
                   style={{

@@ -28,9 +28,16 @@ import Partners from "../components/Partners";
 import TopFooter from "../components/footer/TopFooter";
 import MidFooter from "../components/footer/MidFooter";
 import BottomFooter from "../components/footer/BottomFooter";
+import { CgScrollV } from "react-icons/cg";
 
 const Home = () => {
-  const navigate = useNavigate();
+  const handleClickScroll = () => {
+    const element = document.getElementById("section-1");
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   // offers
@@ -132,9 +139,21 @@ const Home = () => {
   return (
     <div>
       {/* offers */}
-      <Slider />
+      <div className="relative">
+        <div
+          className="absolute bottom-[12%] right-[4%] z-10 flex items-center gap-3"
+          onClick={handleClickScroll}
+        >
+          <h5 className=" text-white text-lg">Scroll Down</h5>
+          <div className=" text-white text-2xl border-2 rounded-full py-2 cursor-pointer">
+            <CgScrollV />
+          </div>
+        </div>
 
-      <div className="max-w-6xl m-auto my-20">
+        <Slider />
+      </div>
+
+      <div className="max-w-6xl m-auto my-20" id="section-1">
         {offerListings && offerListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
@@ -154,7 +173,7 @@ const Home = () => {
             >
               {offerListings.map((listing, id) => {
                 return (
-                  <SwiperSlide key={id}>
+                  <SwiperSlide key={id} className="relative">
                     <ListingItem
                       key={listing.id}
                       listing={listing.data}
