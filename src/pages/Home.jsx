@@ -24,6 +24,7 @@ import FindCity from "../components/FindCity";
 import ChooseUS from "../components/ChooseUs";
 import Testimonials from "../components/Testimonials";
 import ArticlesTips from "../components/ArticlesTips";
+import Partners from "../components/Partners";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -256,6 +257,7 @@ const Home = () => {
       </div>
       <Testimonials />
       <ArticlesTips />
+      <Partners />
     </div>
   );
 };
