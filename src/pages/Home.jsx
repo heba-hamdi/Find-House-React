@@ -25,6 +25,7 @@ import ChooseUS from "../components/ChooseUs";
 import Testimonials from "../components/Testimonials";
 import ArticlesTips from "../components/ArticlesTips";
 import Partners from "../components/Partners";
+import TopFooter from "../components/TopFooter";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -258,6 +259,7 @@ const Home = () => {
       <Testimonials />
       <ArticlesTips />
       <Partners />
+      <TopFooter />
     </div>
   );
 };
