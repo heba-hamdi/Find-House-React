@@ -20,6 +20,9 @@ import SwiperCore, {
   EffectFade,
 } from "swiper";
 import "swiper/css/bundle";
+import FindCity from "../components/FindCity";
+import ChooseUS from "../components/ChooseUs";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -163,12 +166,11 @@ const Home = () => {
             </Link>
           </div>
         )}
-      </div>
-      {/* end of offers */}
 
-      {/* rents */}
+        {/* end of offers */}
 
-      <div className="max-w-6xl m-auto my-20">
+        {/* rents */}
+
         {rentListings && rentListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
@@ -205,12 +207,11 @@ const Home = () => {
             </Link>
           </div>
         )}
-      </div>
-      {/* end of rents */}
 
-      {/* sale */}
+        {/* end of rents */}
 
-      <div className="max-w-6xl m-auto my-20">
+        {/* sale */}
+
         {saleListings && saleListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
@@ -247,8 +248,12 @@ const Home = () => {
             </Link>
           </div>
         )}
+
+        {/* end of sale */}
+        <FindCity />
+        <ChooseUS />
       </div>
-      {/* end of sale */}
+      <Testimonials />
     </div>
   );
 };

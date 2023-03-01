@@ -59,15 +59,16 @@ const Header = () => {
           </li>
 
           <li
-            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer flex items-center flex-nowrap ${
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer  ${
               pathMatchRoute("/sign-in") ? "border-b-red-500" : ""
             } || ${pathMatchRoute("/sign-up") ? "border-b-red-500" : ""} || ${
               pathMatchRoute("/profile") ? "border-b-red-500" : ""
             }`}
-            onClick={() => navigate("/profile")}
           >
-            <AiOutlineUser className="text-2xl" />
-            {navLinkState}
+            <a href="/profile" className="flex items-center flex-nowrap">
+              <AiOutlineUser className="text-2xl" />
+              {navLinkState}
+            </a>
           </li>
 
           <button className="bg-red-500 text-white rounded-3xl px-3 m-3 hover:bg-red-600">

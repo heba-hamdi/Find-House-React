@@ -11,10 +11,12 @@ const ListingItem = ({ listingId, listing, onDelete, onEdit }) => {
       <Link to={`/category/${listing.type}/${listingId}`}>
         <div className="flex text-xl absolute bottom-5 right-5 gap-2">
           {onEdit && (
-            <AiFillEdit
-              className="cursor-pointer"
-              onClick={() => onEdit(listing.id)}
-            />
+            <Link to={`/edit-listing/${listingId}`}>
+              <AiFillEdit
+                className="cursor-pointer"
+                onClick={() => onEdit(listing.id)}
+              />
+            </Link>
           )}
           {onDelete && (
             <MdOutlineDeleteForever

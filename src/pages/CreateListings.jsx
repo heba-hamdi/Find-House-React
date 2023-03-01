@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import {
@@ -13,12 +13,13 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/loader/Loader";
+import axios from "axios";
 
 const CreateListings = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [geolocationEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [stateData, setStateData] = useState([]);
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -31,9 +32,8 @@ const CreateListings = () => {
     offer: false,
     regularPrice: 0,
     discountedPrice: 0,
-    latitude: 0,
-    longitude: 0,
     images: {},
+    state: "AL",
   });
   const {
     type,
@@ -47,10 +47,37 @@ const CreateListings = () => {
     offer,
     regularPrice,
     discountedPrice,
-    latitude,
-    longitude,
     images,
+    state,
   } = formData;
+
+  useEffect(() => {
+    const fetchState = async () => {
+      const options = {
+        method: "GET",
+        url: "https://us-states.p.rapidapi.com/basic",
+        headers: {
+          "X-RapidAPI-Key":
+            "c573d05034msh6504006fe3dfe62p1dafddjsn86270a973a52",
+          "X-RapidAPI-Host": "us-states.p.rapidapi.com",
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          setStateData(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+    fetchState();
+  }, []);
+
+  console.log("hiis");
+  console.log(stateData);
+
   function onChange(e) {
     let boolean = null;
     if (e.target.value === "true") {
@@ -284,16 +311,42 @@ const CreateListings = () => {
                 no
               </button>
             </div>
-            <p className="text-lg mt-6 font-semibold mb-2">Address</p>
-            <textarea
-              type="text"
-              id="address"
-              value={address}
-              onChange={onChange}
-              placeholder="Address"
-              required
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
-            />
+            <div>
+              <p className="text-lg mt-6 font-semibold mb-2">Address</p>
+              <input
+                type="text"
+                id="address"
+                value={address}
+                onChange={onChange}
+                placeholder="Address"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
+              />
+            </div>
+            <div className="flex items-center space-x-6 mb-6">
+              <div className="w-full">
+                <p className="text-lg font-semibold mb-2">State</p>
+                <select className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center">
+                  {stateData.map((list, id) => (
+                    <option
+                      onChange={onChange}
+                      value={state}
+                      id="state"
+                      key={id}
+                    >
+                      {list.postal}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="w-full">
+                <p className="text-lg font-semibold mb-2">Zip Code</p>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+                />
+              </div>
+            </div>
 
             <p className="text-lg font-semibold mb-2">Description</p>
             <textarea
