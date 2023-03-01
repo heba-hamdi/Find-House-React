@@ -23,6 +23,7 @@ import "swiper/css/bundle";
 import FindCity from "../components/FindCity";
 import ChooseUS from "../components/ChooseUs";
 import Testimonials from "../components/Testimonials";
+import ArticlesTips from "../components/ArticlesTips";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -254,6 +255,7 @@ const Home = () => {
         <ChooseUS />
       </div>
       <Testimonials />
+      <ArticlesTips />
     </div>
   );
 };

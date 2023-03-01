@@ -12,7 +12,7 @@ import "swiper/css/bundle";
 const Testimonials = () => {
   return (
     <section className="bg-gradient-to-r from-[#243b55] to-[#141E30] relative">
-      <GiCeilingLight className="text-8xl text-gray-700 absolute right-[10%]" />
+      <GiCeilingLight className="text-8xl text-red-500 absolute right-[10%]" />
       <div className="pt-12">
         <h2 className="text-center font-bold text-2xl text-white tracking-wide">
           Testimonials
@@ -41,9 +41,7 @@ const Testimonials = () => {
                 />
               </div>
               <div className="text-center text-white mt-6">
-                <h4 className="text-lg font-bold tracking-wide">
-                  Augasta Silva
-                </h4>
+                <h4 className="text-lg font-bold tracking-wide">Sarah Silva</h4>
                 <p>Sales Manager</p>
                 <p className="mt-6">
                   Aliquam dictum elit vitae mauris facilisis at dictum urna
@@ -63,7 +61,7 @@ const Testimonials = () => {
               </div>
               <div className="text-center text-white mt-6">
                 <h4 className="text-lg font-bold tracking-wide">
-                  Augasta Silva
+                  Edward Milga
                 </h4>
                 <p>Sales Manager</p>
                 <p className="mt-6">
@@ -84,7 +82,7 @@ const Testimonials = () => {
               </div>
               <div className="text-center text-white mt-6">
                 <h4 className="text-lg font-bold tracking-wide">
-                  Augasta Silva
+                  Robin Cruize
                 </h4>
                 <p>Sales Manager</p>
                 <p className="mt-6">
