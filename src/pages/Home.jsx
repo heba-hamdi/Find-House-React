@@ -57,11 +57,12 @@ const Home = () => {
   };
 
   const scrollUp = () => {
-    const elementBottom = document.getElementById("section");
-    if (elementBottom) {
-      // 👇 Will scroll smoothly to the top of the next section
-      elementBottom.scrollIntoView({ behavior: "smooth" });
-    }
+    // const elementBottom = document.getElementById("section");
+    // if (elementBottom) {
+    //   // 👇 Will scroll smoothly to the top of the next section
+    //   elementBottom.scrollIntoView({ behavior: "smooth" });
+    // }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   SwiperCore.use([Autoplay, Navigation, Pagination]);
