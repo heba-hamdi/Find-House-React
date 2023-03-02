@@ -14,6 +14,8 @@ import CreateListings from './pages/CreateListings'
 import EditListing from './pages/EditListing';
 import Listing from './pages/Listing';
 import Category from './pages/Category';
+import MidFooter from './components/footer/MidFooter';
+import BottomFooter from './components/footer/BottomFooter';
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
         </Routes>
 
         <AnimatedRoutes />
+        <MidFooter/>
+        <BottomFooter/>
 
       </Router>
       <ToastContainer
