@@ -29,6 +29,7 @@ import TopFooter from "../components/footer/TopFooter";
 import MidFooter from "../components/footer/MidFooter";
 import BottomFooter from "../components/footer/BottomFooter";
 import { CgScrollV } from "react-icons/cg";
+import { BsArrowUpCircleFill } from "react-icons/bs";
 
 const Home = () => {
   const handleClickScroll = () => {
@@ -36,6 +37,14 @@ const Home = () => {
     if (element) {
       // 👇 Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollUp = () => {
+    const elementBottom = document.getElementById("section");
+    if (elementBottom) {
+      // 👇 Will scroll smoothly to the top of the next section
+      elementBottom.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -137,7 +146,7 @@ const Home = () => {
   // end of sales
 
   return (
-    <div>
+    <div className="relative" id="section">
       {/* offers */}
       <div className="relative">
         <div
@@ -153,6 +162,14 @@ const Home = () => {
         <Slider />
       </div>
 
+      <div
+        className=" bottom-[2%] right-[4%] z-10 flex items-center gap-3 fixed"
+        onClick={scrollUp}
+      >
+        <div className=" text-gray-400/50 bg-white text-3xl border-4 rounded-full cursor-pointer ">
+          <BsArrowUpCircleFill />
+        </div>
+      </div>
       <div className="max-w-6xl m-auto my-20" id="section-1">
         {offerListings && offerListings.length > 0 && (
           <div className="m-2 mb-6">
