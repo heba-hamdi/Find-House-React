@@ -32,6 +32,22 @@ import { CgScrollV } from "react-icons/cg";
 import { BsArrowUpCircleFill } from "react-icons/bs";
 
 const Home = () => {
+  useEffect(() => {
+    const scrollUpBtn = document.getElementById("scroll-up");
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollUpBtn.style.display = "block";
+      } else {
+        scrollUpBtn.style.display = "none";
+      }
+    }
+  }, []);
   const handleClickScroll = () => {
     const element = document.getElementById("section-1");
     if (element) {
@@ -163,7 +179,8 @@ const Home = () => {
       </div>
 
       <div
-        className=" bottom-[2%] right-[4%] z-10 flex items-center gap-3 fixed"
+        id="scroll-up"
+        className="fixed bottom-[2%] right-[4%] z-10 visible"
         onClick={scrollUp}
       >
         <div className=" text-gray-400/50 bg-white text-3xl border-4 rounded-full cursor-pointer ">
