@@ -3,8 +3,8 @@ import React from "react";
 const BottomFooter = () => {
   return (
     <div className="bg-gray-900">
-      <div className="max-w-6xl m-auto flex justify-between py-10 text-gray-400 text-sm">
-        <ul className="flex gap-4">
+      <div className="max-w-6xl m-auto flex md:mx-8 xs:justify-center md:justify-between py-10 text-gray-400 text-sm ">
+        <ul className=" gap-4 xs:hidden md:flex">
           <li className="hover:text-white">
             <a href="/">Home</a>
           </li>
