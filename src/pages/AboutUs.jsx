@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../components/loader/Loader";
 import { db } from "../firebase";
 import { AiOutlineUser, AiFillPlayCircle } from "react-icons/ai";
-import { BsHouseDoor, BsHouseDoorFill } from "react-icons/bs";
+import { BsHouseDoor, BsArrowUpCircleFill } from "react-icons/bs";
 import { RiExchangeDollarFill } from "react-icons/ri";
 import ChooseCard from "../components/ChooseCard";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
@@ -25,6 +25,23 @@ const AboutUs = () => {
   const [showLine, setShowLine] = useState(false);
   const [showLine2, setShowLine2] = useState(false);
   const [showLine3, setShowLine3] = useState(false);
+
+  useEffect(() => {
+    const scrollUpBtn = document.getElementById("scroll-up");
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 5 ||
+        document.documentElement.scrollTop > 5
+      ) {
+        scrollUpBtn.style.display = "block";
+      } else {
+        scrollUpBtn.style.display = "none";
+      }
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchListings() {
@@ -59,8 +76,23 @@ const AboutUs = () => {
   if (loading) {
     return <Loader />;
   }
+
+  const scrollUp = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="bg-white">
+      <div
+        id="scroll-up"
+        className="fixed bottom-[2%] right-[4%] z-10 visible"
+        onClick={scrollUp}
+      >
+        <div className=" text-gray-400/50 bg-white text-3xl border-4 rounded-full cursor-pointer ">
+          <BsArrowUpCircleFill />
+        </div>
+      </div>
+
       <div className="relative w-screen background">
         <img
           src={listings[0].data.imgUrls[0]}

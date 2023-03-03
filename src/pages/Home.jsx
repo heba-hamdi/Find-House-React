@@ -183,6 +183,7 @@ const Home = () => {
           <BsArrowUpCircleFill />
         </div>
       </div>
+
       <div className="max-w-6xl m-auto my-20" id="section-1">
         {offerListings && offerListings.length > 0 && (
           <div className="m-2 mb-6">
