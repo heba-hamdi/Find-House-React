@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import ListingItem from "../components/ListingItem";
 import { useParams } from "react-router";
+import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const Category = () => {
   const [listings, setlistings] = useState(null);
@@ -120,6 +122,8 @@ const Category = () => {
           </button>
         </div>
       )}
+      <MidFooter />
+      <BottomFooter />
     </>
   );
 };

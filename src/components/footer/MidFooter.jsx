@@ -8,8 +8,12 @@ import {
   AiOutlineDribbble,
   AiOutlineGoogle,
 } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const MidFooter = () => {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="bg-gradient-to-r from-[#243b55] to-[#141E30]">
       <main className=" grid grid-cols-4 text-white py-12 max-w-6xl m-auto">
@@ -25,7 +29,9 @@ const MidFooter = () => {
           <h3 className="font-bold mb-6 text-lg">Quick Links</h3>
           <ul className="w-3/4 text-sm text-gray-400">
             <li className="mb-2 hover:text-white hover:translate-x-[10%] transition duration-500 ease-in-out">
-              <a href="#">About Us</a>
+              <Link to="/about-us" onClick={scrollToTop}>
+                About Us
+              </Link>
             </li>
             <li className="mb-2 hover:text-white hover:translate-x-[10%] transition duration-500 ease-in-out">
               <a href="#">Terms & Conditions</a>

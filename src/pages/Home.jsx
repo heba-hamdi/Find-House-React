@@ -60,6 +60,10 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   // offers
   const [offerListings, setOfferListings] = useState(null);
@@ -214,7 +218,7 @@ const Home = () => {
                 );
               })}
             </Swiper>
-            <Link to="/offers">
+            <Link to="/offers" onClick={scrollToTop}>
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more offers
               </p>
@@ -255,7 +259,7 @@ const Home = () => {
                 );
               })}
             </Swiper>
-            <Link to="/category/rent">
+            <Link to="/category/rent" onClick={scrollToTop}>
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more rents
               </p>
@@ -296,7 +300,7 @@ const Home = () => {
                 );
               })}
             </Swiper>
-            <Link to="/category/sale">
+            <Link to="/category/sale" onClick={scrollToTop}>
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more sale
               </p>
@@ -316,6 +320,8 @@ const Home = () => {
       <ArticlesTips />
       <Partners />
       <TopFooter />
+      <MidFooter />
+      <BottomFooter />
     </div>
   );
 };

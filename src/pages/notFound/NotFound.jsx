@@ -1,4 +1,6 @@
 import React from "react";
+import BottomFooter from "../../components/footer/BottomFooter";
+import MidFooter from "../../components/footer/MidFooter";
 import "./notFound.css";
 
 const NotFound = () => {
@@ -25,6 +27,8 @@ const NotFound = () => {
           </div>
         </div>
       </div>
+      <MidFooter />
+      <BottomFooter />
     </section>
   );
 };

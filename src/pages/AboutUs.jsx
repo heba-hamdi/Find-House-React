@@ -18,6 +18,8 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 import Partners from "../components/Partners";
+import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const AboutUs = () => {
   const [listings, setlistings] = useState(null);
@@ -354,6 +356,8 @@ const AboutUs = () => {
       <hr className="mt-12" />
       <Partners />
       <TopFooter />
+      <MidFooter />
+      <BottomFooter />
     </div>
   );
 };

@@ -15,6 +15,8 @@ import "swiper/css/bundle";
 import { FaBed, FaBath, FaChair, FaParking } from "react-icons/fa";
 import { getAuth } from "firebase/auth";
 import ContactLandlord from "../components/ContactLandlord";
+import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const Listing = () => {
   const params = useParams();
@@ -172,13 +174,13 @@ const Listing = () => {
                   ></iframe>
                   {showBtn && (
                     <>
-                      <div className="absolute top-[20%] left-[46%] rounded-full flex items-center justify-center bg-red-500 px-2 py-3 ring-8 ring-red-500/50 cursor-pointer">
+                      <div className="absolute  top-[50%] left-[50%] -translate-x-[50%] -translate-y-[240%] rounded-full flex items-center justify-center bg-red-500 px-2 py-3 ring-8 ring-red-500/50 cursor-pointer">
                         <img
                           src="https://creativelayers.net/themes/findhouse-html/images/header-logo.png"
                           className="w-3/4 bg-red-500 p-1 rounded-full "
                         />
                       </div>
-                      <div className="absolute top-[40%] left-[30%] bg-gray-200/95 px-10 py-3 rounded-md transition-all duration-600 ease-in-out">
+                      <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-gray-200/95 px-10 py-3 rounded-md transition-all duration-600 ease-in-out">
                         <h3 className="font-bold mb-3 text-gray-600">Google</h3>
                         <p>This page can't load Google Maps correctly.</p>
                         <div className="flex justify-between mt-5">
@@ -201,6 +203,8 @@ const Listing = () => {
           </div>
         </div>
       </section>
+      <MidFooter />
+      <BottomFooter />
     </main>
   );
 };

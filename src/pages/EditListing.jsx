@@ -13,6 +13,8 @@ import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/loader/Loader";
+import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const EditListing = () => {
   const params = useParams();
@@ -484,6 +486,8 @@ const EditListing = () => {
           </form>
         </div>
       </div>
+      <MidFooter />
+      <BottomFooter />
     </main>
   );
 };

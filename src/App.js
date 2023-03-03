@@ -18,6 +18,8 @@ import MidFooter from './components/footer/MidFooter';
 import BottomFooter from './components/footer/BottomFooter';
 import AboutUs from './pages/AboutUs';
 import NotFound from './pages/notFound/NotFound';
+import Contact from './pages/Contact';
+import SignIn from './pages/SignIn';
 
 
 function App() {
@@ -35,9 +37,11 @@ function App() {
 
           <Route path="/offers" element={<Offers />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/category/:categoryName" element={<Category />} />
           <Route path="/category/:categoryName/:listingId" element={<Listing />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path="/forgot-password" element={<ForgotPassword />}/>
 
           <Route path="/create-listings" element={<PrivateRoute/>}>
@@ -51,8 +55,7 @@ function App() {
         </Routes>
 
         <AnimatedRoutes />
-        <MidFooter/>
-        <BottomFooter/>
+      
 
       </Router>
       <ToastContainer

@@ -62,7 +62,14 @@ const Header = () => {
               pathMatchRoute("/about-us") && "border-b-red-500"
             }`}
           >
-            <a href="/about-us">About Us</a>
+            <a href="/about-us">About</a>
+          </li>
+          <li
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer hover:-translate-y-1 transition duration-300 ease-in-out ${
+              pathMatchRoute("/contact") && "border-b-red-500"
+            }`}
+          >
+            <a href="/contact">Contact</a>
           </li>
 
           <li

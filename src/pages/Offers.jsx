@@ -12,6 +12,8 @@ import { db } from "../firebase";
 import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import ListingItem from "../components/ListingItem";
+import MidFooter from "../components/footer/MidFooter";
+import BottomFooter from "../components/footer/BottomFooter";
 
 const Offers = () => {
   const [listings, setlistings] = useState(null);
@@ -116,6 +118,8 @@ const Offers = () => {
           </button>
         </div>
       )}
+      <MidFooter />
+      <BottomFooter />
     </>
   );
 };
