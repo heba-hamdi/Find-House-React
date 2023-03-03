@@ -17,6 +17,7 @@ import Category from './pages/Category';
 import MidFooter from './components/footer/MidFooter';
 import BottomFooter from './components/footer/BottomFooter';
 import AboutUs from './pages/AboutUs';
+import NotFound from './pages/notFound/NotFound';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/edit-listing" element={<PrivateRoute/>}>
             <Route path="/edit-listing/:listingId" element={<EditListing/>} />
           </Route>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
 
         <AnimatedRoutes />
