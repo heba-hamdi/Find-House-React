@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ChooseCard = ({ icon, title }) => {
+const ChooseCard = ({
+  icon,
+  title,
+  bgColor,
+  textColor,
+  hoverBgColor,
+  hoverText,
+}) => {
   return (
     <section>
-      <div className="flex flex-col items-center bg-white p-10 rounded-lg hover:shadow-md">
-        <div className="bg-red-200 text-5xl text-red-500 hover:bg-red-500 hover:text-white rounded-full w-[130px] h-[130px] flex justify-center items-center transition duration-300 ease-in-out">
+      <div className="flex flex-col items-center bg-white p-10 rounded-lg hover:shadow-md relative">
+        <div
+          className={`${bgColor} text-5xl ${textColor} ${hoverBgColor} ${hoverText} rounded-full w-[130px] h-[130px] flex justify-center items-center transition duration-300 ease-in-out `}
+        >
           {icon}
         </div>
         <h3 className="mt-10 font-bold text-lg">{title}</h3>

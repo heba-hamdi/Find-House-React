@@ -307,7 +307,11 @@ const Home = () => {
         <FindCity />
         <ChooseUS />
       </div>
-      <Testimonials />
+      <Testimonials
+        background={"bg-gradient-to-r from-[#243b55] to-[#141E30]"}
+        border={"border-gray-700"}
+        textColor={"text-white"}
+      />
       <ArticlesTips />
       <Partners />
       <TopFooter />

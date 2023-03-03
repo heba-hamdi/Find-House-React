@@ -44,28 +44,38 @@ const Header = () => {
         </a>
         <ul className="invisible flex md:space-x-10 md:visible">
           <li
-            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer hover:-translate-y-1 transition duration-300 ease-in-out ${
               pathMatchRoute("/") && "border-b-red-500"
             }`}
           >
             <a href="/">Home</a>
           </li>
           <li
-            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer ${
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer hover:-translate-y-1 transition duration-300 ease-in-out ${
               pathMatchRoute("/offers") && "border-b-red-500"
             }`}
           >
             <a href="/offers">Offers</a>
           </li>
+          <li
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer hover:-translate-y-1 transition duration-300 ease-in-out ${
+              pathMatchRoute("/about-us") && "border-b-red-500"
+            }`}
+          >
+            <a href="/about-us">About Us</a>
+          </li>
 
           <li
-            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer  ${
+            className={`text-gray-500 py-5 border-b-[4px] border-b-transparent cursor-pointer hover:-translate-y-1 transition duration-300 ease-in-out ${
               pathMatchRoute("/sign-in") ? "border-b-red-500" : ""
             } || ${pathMatchRoute("/sign-up") ? "border-b-red-500" : ""} || ${
               pathMatchRoute("/profile") ? "border-b-red-500" : ""
-            }`}
+            } `}
           >
-            <a href="/profile" className="flex items-center flex-nowrap">
+            <a
+              href="/profile"
+              className="flex items-center flex-nowrap border-l-2 pl-2"
+            >
               <AiOutlineUser className="text-2xl" />
               {navLinkState}
             </a>

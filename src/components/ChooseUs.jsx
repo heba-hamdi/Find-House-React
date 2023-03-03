@@ -16,9 +16,27 @@ const ChooseUs = () => {
         <ChooseCard
           icon={<VscWorkspaceTrusted />}
           title={"Trusted By Thousands"}
+          bgColor={"bg-red-200"}
+          textColor={"text-red-500"}
+          hoverBgColor={"hover:bg-red-500"}
+          hoverText={"hover:text-white"}
         />
-        <ChooseCard icon={<BsHouseDoor />} title={"Wide Renge Of Properties"} />
-        <ChooseCard icon={<MdAttachMoney />} title={"Financing Made Easy"} />
+        <ChooseCard
+          icon={<BsHouseDoor />}
+          title={"Wide Renge Of Properties"}
+          bgColor={"bg-red-200"}
+          textColor={"text-red-500"}
+          hoverBgColor={"hover:bg-red-500"}
+          hoverText={"hover:text-white"}
+        />
+        <ChooseCard
+          icon={<MdAttachMoney />}
+          title={"Financing Made Easy"}
+          bgColor={"bg-red-200"}
+          textColor={"text-red-500"}
+          hoverBgColor={"hover:bg-red-500"}
+          hoverText={"hover:text-white"}
+        />
       </div>
     </>
   );

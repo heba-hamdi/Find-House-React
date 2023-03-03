@@ -16,6 +16,7 @@ import Listing from './pages/Listing';
 import Category from './pages/Category';
 import MidFooter from './components/footer/MidFooter';
 import BottomFooter from './components/footer/BottomFooter';
+import AboutUs from './pages/AboutUs';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           </Route>
 
           <Route path="/offers" element={<Offers />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/category/:categoryName" element={<Category />} />
           <Route path="/category/:categoryName/:listingId" element={<Listing />} />
           <Route path="/sign-up" element={<SignUp />} />
