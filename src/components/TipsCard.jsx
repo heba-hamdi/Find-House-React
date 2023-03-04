@@ -3,8 +3,8 @@ import React from "react";
 const TipsCard = ({ img, title, profilePic, profileName, date }) => {
   return (
     <div>
-      <div className="bg-white rounded-md hover:drop-shadow-lg transition duration-300 ease-in-out">
-        <div className="p-4">
+      <div className="bg-white rounded-md hover:drop-shadow-lg transition duration-300 ease-in-out xs:w-max md:w-7/12 lg:w-auto m-auto">
+        <div className="p-4 ">
           <img src={img} alt="" className="h-[250px] w-full rounded-md" />
         </div>
         <div className="px-4 pb-4">

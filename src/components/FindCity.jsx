@@ -84,10 +84,13 @@ const FindCity = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
-      <div className="mt-12 items-center  grid grid-cols-3 gap-4  ">
-        <div className="rounded-md relative overflow-hidden col-span-2">
-          <div className="background hover:scale-125 transition-all duration-700 ease-in-out cursor-pointer relative h-[330px] ">
-            <img src="https://images.unsplash.com/photo-1610570858169-b60adec1c295?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" />
+      <div className="grid lg:grid-cols-3 gap-6 xs:m-auto xs:w-3/4 lg:w-auto">
+        <div className="rounded-md relative overflow-hidden lg:col-span-2">
+          <div className="background hover:scale-125 transition-all duration-700 ease-in-out cursor-pointer relative ">
+            <img
+              className="h-[330px] w-full"
+              src="https://images.unsplash.com/photo-1610570858169-b60adec1c295?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+            />
             <h6 className="absolute text-white text-2xl bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] z-10 font-bold">
               Iowa
             </h6>
@@ -98,11 +101,11 @@ const FindCity = () => {
             </p>
           </div>
         </div>
-        <div className="rounded-md relative overflow-hidden col-span-1 ">
+        <div className="rounded-md relative overflow-hidden">
           <div className="background hover:scale-125 transition-all duration-700 ease-in-out cursor-pointer ">
             <img
               src="https://images.unsplash.com/photo-1619083382085-9452906b7157?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1464&q=80"
-              className="h-[330px]"
+              className="h-[330px] w-full"
             />
             <h6 className="absolute text-white text-2xl bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] z-10 font-bold">
               California
@@ -116,14 +119,14 @@ const FindCity = () => {
         </div>
       </div>
 
-      <div className="mt-12 grid grid-cols-3 gap-4 ">
-        <div className="rounded-md relative overflow-hidden col-span-1">
+      <div className="grid lg:grid-cols-3 gap-6 xs:m-auto xs:w-3/4 lg:w-auto xs:mt-6">
+        <div className="rounded-md relative overflow-hidden">
           <div className=" background hover:scale-125 transition-all duration-700 ease-in-out cursor-pointer">
             <img
               src="
               https://images.unsplash.com/photo-1544665215-3871472514fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1112&q=80
              "
-              className="h-[330px]"
+              className="h-[330px] w-full"
             />
             <h6 className="absolute text-white text-2xl bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] z-10 font-bold">
               Florida
@@ -135,7 +138,7 @@ const FindCity = () => {
             </p>
           </div>
         </div>
-        <div className="rounded-md relative overflow-hidden col-span-2">
+        <div className="rounded-md relative overflow-hidden lg:col-span-2">
           <div className="  background hover:scale-125 transition-all duration-700 ease-in-out cursor-pointer">
             <img
               src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"

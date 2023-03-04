@@ -12,7 +12,7 @@ const ArticlesTips = () => {
           Browse offers with great prices!
         </p>
       </div>
-      <ul className="mt-20 grid grid-cols-3 gap-6">
+      <ul className="mt-20 grid xs:grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Card-1 */}
         <TipsCard
           img={
