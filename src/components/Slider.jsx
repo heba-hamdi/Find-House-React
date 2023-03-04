@@ -75,16 +75,16 @@ const Slider = ({ nav }) => {
                 >
                   <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
                     <div className="bg-gray-500/50 p-2 rounded-md">
-                      <h1 className="text-[#fff] text-6xl ">
+                      <h1 className="text-[#fff] xs:text-3xl md:text-4xl lg:text-6xl ">
                         Find Your Dream House
                       </h1>
-                      <p className="text-white text-center text-2xl mt-2 tracking-wider">
+                      <p className="text-white lg:text-center xs:text-sm sm:text-lg md:text-xl lg:text-2xl mt-2 tracking-wider">
                         For best prices with limited time offer discounts.
                       </p>
                     </div>
                   </div>
                   <div className="absolute bottom-[5%] left-[1%] z-10 bg-red-500 py-3 px-4 rounded-tr-lg rounded-bl-lg ">
-                    <h3 className="text-white text-xl font-bold">
+                    <h3 className="text-white lg:text-xl font-bold">
                       $
                       {list.data.discountPrice
                         ? list.data.discountPrice
@@ -95,7 +95,7 @@ const Slider = ({ nav }) => {
                     </h3>
                   </div>
                   <div className="z-10 absolute top-[5%] left-[1%] bg-gray-100 py-3 px-4 rounded-tr-lg rounded-bl-lg cursor-pointer">
-                    <h3 className=" text-xl font-bold">{list.data.name}</h3>
+                    <h3 className=" lg:text-xl font-bold">{list.data.name}</h3>
                   </div>
                 </div>
               </SwiperSlide>

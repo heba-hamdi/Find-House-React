@@ -33,6 +33,8 @@ code {
   background: #fff;
 }
 
+
+
 .background::after {
  content: "";
  width: 100%;
@@ -58,16 +60,18 @@ code {
 }
 
 
-@media screen and (min-width: 640px) {
-  .swiper-container {
-    width: 640px;
+
+@media screen and (max-width: 640px) {
+  .swiper-button-prev, .swiper-button-next{
+    transform: scale(0.5);
   }
 }
 
-@media screen and (min-width: 768px) {
-  .swiper-container {
-    width: 848px;
+@media screen and (max-width: 768px) {
+  .swiper-button-prev, .swiper-button-next{
+    transform: scale(0.75);
   }
+  
 }
 
 /* html::-webkit-scrollbar{
