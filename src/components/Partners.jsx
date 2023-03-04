@@ -12,28 +12,37 @@ const Partners = () => {
             We only work with the best companies around the globe
           </p>
         </div>
-        <div className="flex justify-around my-16">
-          <img
-            src="https://creativelayers.net/themes/findhouse-html/images/partners/1.png"
-            alt=""
-          />
-          <img
-            src="https://creativelayers.net/themes/findhouse-html/images/partners/2.png"
-            alt=""
-          />
-          <img
-            src="https://creativelayers.net/themes/findhouse-html/images/partners/3.png"
-            alt=""
-          />
-
-          <img
-            src="https://creativelayers.net/themes/findhouse-html/images/partners/4.png"
-            alt=""
-          />
-          <img
-            src="https://creativelayers.net/themes/findhouse-html/images/partners/5.png"
-            alt=""
-          />
+        <div className=" grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 my-16 m-auto text-center">
+          <div className="m-auto mb-6">
+            <img
+              src="https://creativelayers.net/themes/findhouse-html/images/partners/1.png"
+              alt=""
+            />
+          </div>
+          <div className="m-auto mb-6">
+            <img
+              src="https://creativelayers.net/themes/findhouse-html/images/partners/2.png"
+              alt=""
+            />
+          </div>
+          <div className="m-auto mb-6">
+            <img
+              src="https://creativelayers.net/themes/findhouse-html/images/partners/3.png"
+              alt=""
+            />
+          </div>
+          <div className="m-auto mb-6">
+            <img
+              src="https://creativelayers.net/themes/findhouse-html/images/partners/4.png"
+              alt=""
+            />
+          </div>
+          <div className="m-auto">
+            <img
+              src="https://creativelayers.net/themes/findhouse-html/images/partners/5.png"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
