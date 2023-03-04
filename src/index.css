@@ -57,6 +57,19 @@ code {
   background-color: #ef4444 !important;
 }
 
+
+@media screen and (min-width: 640px) {
+  .swiper-container {
+    width: 640px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 848px;
+  }
+}
+
 /* html::-webkit-scrollbar{
   display: none;
 }
