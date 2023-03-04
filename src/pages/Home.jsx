@@ -190,7 +190,7 @@ const Home = () => {
 
       <div className="max-w-6xl m-auto my-20" id="section-1">
         {offerListings && offerListings.length > 0 && (
-          <div className="m-2 mb-6">
+          <div className="xs:m-auto xs:w-3/4 lg:w-full lg:m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
               Latest Offers
             </h2>
@@ -198,8 +198,18 @@ const Home = () => {
               Browse offers with great prices!
             </p>
             <Swiper
-              slidesPerView={3}
+              slidesPerView={1}
               spaceBetween={30}
+              breakpoints={{
+                // when window width is >= 640px
+                640: {
+                  slidesPerView: 2,
+                },
+                // when window width is >= 768px
+                848: {
+                  slidesPerView: 3,
+                },
+              }}
               pagination={{
                 clickable: true,
               }}
@@ -231,7 +241,7 @@ const Home = () => {
         {/* rents */}
 
         {rentListings && rentListings.length > 0 && (
-          <div className="m-2 mb-6">
+          <div className="xs:m-auto xs:w-3/4 lg:w-full lg:m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
               Latest For Rent
             </h2>
@@ -239,8 +249,18 @@ const Home = () => {
               Handpicked properties by our team.
             </p>
             <Swiper
-              slidesPerView={3}
+              slidesPerView={1}
               spaceBetween={30}
+              breakpoints={{
+                // when window width is >= 640px
+                640: {
+                  slidesPerView: 2,
+                },
+                // when window width is >= 768px
+                848: {
+                  slidesPerView: 3,
+                },
+              }}
               pagination={{
                 clickable: true,
               }}
@@ -272,7 +292,7 @@ const Home = () => {
         {/* sale */}
 
         {saleListings && saleListings.length > 0 && (
-          <div className="m-2 mb-6">
+          <div className=" xs:m-auto xs:w-3/4 lg:w-full lg:m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold text-center">
               Latest For Sale
             </h2>
@@ -280,8 +300,18 @@ const Home = () => {
               Handpicked properties by our team.
             </p>
             <Swiper
-              slidesPerView={3}
+              slidesPerView={1}
               spaceBetween={30}
+              breakpoints={{
+                // when window width is >= 640px
+                640: {
+                  slidesPerView: 2,
+                },
+                // when window width is >= 768px
+                848: {
+                  slidesPerView: 3,
+                },
+              }}
               pagination={{
                 clickable: true,
               }}
