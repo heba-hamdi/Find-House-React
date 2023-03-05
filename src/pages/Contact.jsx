@@ -89,12 +89,12 @@ const Contact = () => {
           src={listings[0].data.imgUrls[0]}
           className="h-[600px]  object-cover w-full"
         />
-        <h1 className="font-bold text-white my-6 text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
+        <h1 className="font-bold text-white my-6 xs:text-4xl md:text-6xl lg:text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
           Contact Us
         </h1>
       </div>
-      <main className="max-w-6xl m-auto my-20 flex gap-10 justify-between  ">
-        <div className="bg-white p-12 w-8/12 rounded-md border border-gray-200">
+      <main className="lg:max-w-6xl lg:m-auto my-20 flex xs:flex-col lg:flex-row gap-10 lg:justify-between items-center ">
+        <div className="bg-white p-12 lg:w-8/12 xs:w-11/12 md:w-10/12 rounded-md border border-gray-200">
           <div className="flex gap-4">
             <div>
               <h2 className="font-bold text-lg">Send Us An Email</h2>
@@ -106,7 +106,7 @@ const Contact = () => {
                 habitasse platea dictumst.
               </p>
               <div className="form">
-                <div className="my-3 flex gap-3">
+                <div className="my-3 flex xs:flex-col lg:flex-row gap-3">
                   <input
                     type="text"
                     className="border rounded-md w-full p-3"
@@ -119,7 +119,7 @@ const Contact = () => {
                     placeholder="Email"
                   />
                 </div>
-                <div className="my-3 flex gap-3">
+                <div className="my-3 flex gap-3 xs:flex-col md:flex-row">
                   <input
                     type="text"
                     className="border rounded-md w-full  p-3"
@@ -149,7 +149,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-12 w-4/12 rounded-md border border-gray-200">
+        <div className="bg-white p-12 lg:w-8/12 xs:w-11/12 md:w-10/12 rounded-md border border-gray-200">
           <h2 className="font-bold text-lg">Contact Us</h2>
           <p className="mt-1 text-sm text-gray-500 leading-7">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida
