@@ -155,7 +155,7 @@ const Profile = () => {
                   </p>
                   <p
                     onClick={logout}
-                    className="font-semibold text-sm  text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out cursor-pointer mt-3"
+                    className="xs:mb-2 md:mb-0 font-semibold text-sm  text-violet-400 hover:text-violet-600 transition duration-300 ease-in-out cursor-pointer mt-3"
                   >
                     Sign out
                   </p>

@@ -66,7 +66,7 @@ const SignUp = () => {
       <div className="flex justify-center items-center w-full h-screen ">
         {/* =============================Left Side========================================= */}
 
-        <div className="grid grid-cols-2 w-[800px] bg-white m-auto text-center font-semibold rounded-md relative">
+        <div className=" xs:mx-6 lg:mx-0 grid lg:grid-cols-2 w-[800px] bg-white m-auto text-center font-semibold rounded-md relative">
           <div className="absolute top-[-2%] right-[-2%]">
             <RiCloseCircleFill
               className="  rounded-full text-3xl text-red-500 bg-white cursor-pointer"
@@ -75,12 +75,12 @@ const SignUp = () => {
           </div>
           <div>
             <button
-              className="py-6 w-full bg-gray-100"
+              className="py-6 w-full bg-gray-100 lg:block xs:hidden"
               onClick={() => navigate("/sign-in")}
             >
               Login
             </button>
-            <div className="my-3 flex items-center justify-center">
+            <div className="lg:block xs:hidden my-3 flex items-center justify-center">
               <img
                 src="https://images.unsplash.com/photo-1595074474890-f00d2a8ada52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                 className="w-full rounded-3xl p-5"
@@ -91,7 +91,9 @@ const SignUp = () => {
 
           {/* ==========================================Right Side======================================================= */}
           <div>
-            <button className="py-6 ">Register</button>
+            <button className="py-6 lg:bg-white xs:bg-gray-100 w-full">
+              Register
+            </button>
             <div className="h-full  flex items-start justify-center mt-3 mr-3">
               {/* =============form start===================== */}
 

@@ -445,7 +445,7 @@ const CreateListings = () => {
                   </div>
                 </div>
               )}
-              <div className="mb-6">
+              <div className="mb-6 ">
                 <p className="text-lg font-semibold">Images</p>
                 <p className="text-gray-600 mb-2">
                   The first image will be the cover (max 6)
@@ -457,7 +457,7 @@ const CreateListings = () => {
                   accept=".jpg,.png,.jpeg"
                   multiple
                   required
-                  className="w-1/4 px-3 py-1.5 text-black bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:text-black focus:border-black p-4 custom-btn"
+                  className="lg:w-1/4 px-3 py-1.5 text-black bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:text-black focus:border-black p-4 custom-btn"
                 />
               </div>
               <button

@@ -76,29 +76,31 @@ const Listing = () => {
       </Swiper>
       <section>
         <div className="pt-12 max-w-6xl m-auto">
-          <div className="flex justify-between items-center">
-            <div>
-              <h2 className="font-bold text-3xl mb-3">{listing.name}</h2>
+          <div className="flex xs:flex-col lg:flex-row justify-between xs:items-center md:items-start">
+            <div className="xs:ml-6 lg:ml-0">
+              <h2 className="font-bold xs:text-xl md:text-2xl lg:text-3xl mb-3">
+                {listing.name}
+              </h2>
               <p className="text-gray-500 text-sm">{listing.address}</p>
             </div>
             <div>
-              <div className="flex items-center justify-center">
-                <p className="font-bold text-3xl ">
+              <div className="flex items-center  xs:justify-center md:justify-start lg:justify-center xs:ml-6 lg:ml-0">
+                <p className="font-bold xs:text-xl md:text-2xl lg:text-3xl xs:mt-3 lg:mt-0">
                   $
                   {listing.regularPrice
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
                 {listing.type === "rent" && (
-                  <span className="text-lg">/mo</span>
+                  <span className="lg:text-lg xs:mt-3 lg:mt-0">/mo</span>
                 )}
               </div>
               {listing.offer && (
-                <div className=" flex space-x-3 items-center mt-2">
-                  <p className="bg-red-500 text-white p-2 rounded-lg">
+                <div className=" flex space-x-3 items-center mt-2 xs:ml-6">
+                  <p className="bg-red-500 text-white xs:p-1 lg:p-2 rounded-lg">
                     For {listing.type}
                   </p>
-                  <p className=" bg-[#006A70] text-white p-2 rounded-lg">
+                  <p className=" bg-[#006A70] text-white xs:p-1 lg:p-2  rounded-lg">
                     $
                     {(+listing.regularPrice - +listing.discountedPrice)
                       .toString()
@@ -110,27 +112,27 @@ const Listing = () => {
             </div>
           </div>
 
-          <div className="bg-white mt-12 rounded-md">
+          <div className="bg-white mt-12 rounded-md sm:text-center md:text-left">
             <div className="my-6 mx-12">
               <div className=" mr-12">
-                <ul className="flex space-x-4 py-10">
-                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                <ul className="grid xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6">
+                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaBed className="mr-2" />
                     {listing.bedrooms > 1
                       ? `${listing.bedrooms} Beds`
                       : `${listing.bedrooms} Bed`}
                   </li>
-                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaBath className="mr-2" />
                     {listing.bathrooms > 1
                       ? `${listing.bathrooms} Baths`
                       : `${listing.bathrooms} Bath`}
                   </li>
-                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaChair className="mr-2" />
                     {listing.furnished ? "Furnished" : "Not Furnished"}
                   </li>
-                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaParking className="mr-2" />
                     {listing.parking ? "Parking" : "No Parking"}
                   </li>
