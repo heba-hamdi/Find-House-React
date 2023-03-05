@@ -74,6 +74,24 @@ code {
   
 }
 
+@media screen and (max-width: 853px) {
+  .horizontal-navBar{
+    display: none;
+  }
+  .side-navBar{
+    display: block;
+  }
+  }
+@media screen and (min-width: 853px) {
+  .horizontal-navBar{
+    display: block;
+  }
+  .side-navBar{
+    display: none;
+  }
+  }
+
+
 /* html::-webkit-scrollbar{
   display: none;
 }
