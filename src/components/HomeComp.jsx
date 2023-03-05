@@ -250,37 +250,39 @@ const HomeComp = () => {
             <p className="text-center text-gray-500 mb-6">
               Handpicked properties by our team.
             </p>
-            <Swiper
-              slidesPerView={1}
-              spaceBetween={30}
-              breakpoints={{
-                // when window width is >= 640px
-                640: {
-                  slidesPerView: 2,
-                },
-                // when window width is >= 768px
-                848: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-              {rentListings.map((listing, id) => {
-                return (
-                  <SwiperSlide key={id}>
-                    <ListingItem
-                      key={listing.id}
-                      listing={listing.data}
-                      listingId={listing.id}
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+            <div className="mx-6">
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={30}
+                breakpoints={{
+                  // when window width is >= 640px
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  // when window width is >= 768px
+                  853: {
+                    slidesPerView: 3,
+                  },
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {rentListings.map((listing, id) => {
+                  return (
+                    <SwiperSlide key={id}>
+                      <ListingItem
+                        key={listing.id}
+                        listing={listing.data}
+                        listingId={listing.id}
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
             <Link to="/category/rent" onClick={scrollToTop}>
               <p className="px-3 text-sm text-red-500 hover:text-red-800 transition duration-150 ease-in-out text-center mt-4">
                 Show more rents

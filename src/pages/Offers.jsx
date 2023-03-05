@@ -93,7 +93,7 @@ const Offers = () => {
           src={listings[0].data.imgUrls[0]}
           className="h-[600px]  object-cover w-full"
         />
-        <h1 className="font-bold text-white my-6 text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
+        <h1 className="font-bold text-white my-6 xs:text-4xl md:text-6xl lg:text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
           Offers
         </h1>
       </div>

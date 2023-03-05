@@ -100,7 +100,7 @@ const AboutUs = () => {
           src={listings[0].data.imgUrls[0]}
           className="h-[600px]  object-cover w-full"
         />
-        <h1 className="font-bold text-white my-6 text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
+        <h1 className="font-bold text-white my-6 xs:text-4xl md:text-6xl lg:text-7xl absolute left-[50%] top-[50%] z-10 translate-x-[-50%] translate-y-[-50%] bg-gray-500/75 py-2 px-6 rounded-md tracking-wider	">
           About Us
         </h1>
       </div>
@@ -111,8 +111,8 @@ const AboutUs = () => {
           </h2>
         </div>
         <div>
-          <section className="flex justify-between gap-10">
-            <div>
+          <section className="flex xs:flex-col lg:flex-row justify-between gap-10">
+            <div className="p-3">
               <p className="font-bold mb-3">
                 Mauris ac consectetur ante, dapibus gravida tellus. Nullam
                 aliquet eleifend dapibus. Cras sagittis, ex euismod lacinia
@@ -150,7 +150,7 @@ const AboutUs = () => {
                 amet, laborum qui nulla quae alias tempora.
               </p>
 
-              <div className="flex my-20 gap-3">
+              <div className="flex xs:justify-center lg:justify-start my-20 gap-3 ">
                 <div className="flex items-center gap-3">
                   <AiOutlineUser className="text-6xl text-red-500" />
                   <div>
@@ -175,11 +175,11 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full mb-12 relative">
+            <div className="w-full mb-12 relative xs:px-6 md:px-12">
               <img
                 src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 alt=""
-                className=" h-[600px] w-full rounded-lg"
+                className="xs:h-[300px] md:h-[400px] lg:h-[600px] w-full rounded-md"
               />
               <a
                 href="https://youtu.be/HRfL-yLieRA"
@@ -201,7 +201,7 @@ const AboutUs = () => {
             We provide full service at every step.
           </p>
         </section>
-        <div className="grid grid-cols-3 my-12 cursor-pointer gap-6">
+        <div className="grid xs:grid-cols-1 xs:mx-8 md:grid-cols-2 md:mx-6 lg:grid-cols-3 mx-0 my-12 cursor-pointer gap-6">
           <div
             className=" relative drop-shadow-none border border-gray-200/75 rounded-md hover:drop-shadow-xl"
             onMouseEnter={() => setShowLine(true)}
@@ -286,71 +286,86 @@ const AboutUs = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper max-w-6xl"
-        >
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
-              <div className="my-4">
+        <div className="xs:mx-6 md:mx-3 lg:mx-0">
+          <Swiper
+            slidesPerView={1}
+            breakpoints={{
+              // when window width is >= 640px
+              640: {
+                slidesPerView: 2,
+              },
+              // when window width is >= 768px
+              848: {
+                slidesPerView: 3,
+              },
+              1135: {
+                slidesPerView: 4,
+              },
+            }}
+            spaceBetween={30}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper max-w-6xl"
+          >
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
+                <div className="my-4">
+                  <h3 className="text-lg">Greg Schmitt</h3>
+                  <small className="text-gray-400">Broker</small>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
+              </div>
+              <div className="my-4 text-center">
                 <h3 className="text-lg">Helene Powers</h3>
+                <small className="text-gray-400">Sales</small>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
+              </div>
+              <div className="my-4 text-center">
+                <h3 className="text-lg">Anna Sorokin</h3>
+                <small className="text-gray-400">Marketing</small>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
+              </div>
+              <div className="my-4 text-center">
+                <h3 className="text-lg">Alexis Sánchez</h3>
                 <small className="text-gray-400">Broker</small>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
-            </div>
-            <div className="my-4">
-              <h3 className="text-lg">Helene Powers</h3>
-              <small className="text-gray-400">Broker</small>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
-            </div>
-            <div className="my-4">
-              <h3 className="text-lg">Helene Powers</h3>
-              <small className="text-gray-400">Broker</small>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
-            </div>
-            <div className="my-4">
-              <h3 className="text-lg">Helene Powers</h3>
-              <small className="text-gray-400">Broker</small>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHNtaWxpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
-            </div>
-            <div className="my-4">
-              <h3 className="text-lg">Helene Powers</h3>
-              <small className="text-gray-400">Broker</small>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="bg-white rounded-md">
-            <div className="flex flex-col items-center text-center">
-              <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1651684215020-f7a5b6610f23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njl8fHByb2ZpbGUlMjBzbWlsaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')]"></div>
-            </div>
-            <div className="my-4">
-              <h3 className="text-lg">Helene Powers</h3>
-              <small className="text-gray-400">Broker</small>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHNtaWxpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"></div>
+              </div>
+              <div className="my-4 text-center">
+                <h3 className="text-lg">Amira fares</h3>
+                <small className="text-gray-400">Sales</small>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white rounded-md">
+              <div className="flex flex-col items-center text-center">
+                <div className=" rounded-md bg-red-500 h-[250px] w-[250px] bg-cover bg-top bg-no-repeat bg-[url('https://images.unsplash.com/photo-1651684215020-f7a5b6610f23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njl8fHByb2ZpbGUlMjBzbWlsaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')]"></div>
+              </div>
+              <div className="my-4 text-center">
+                <h3 className="text-lg">Adam Johnathan</h3>
+                <small className="text-gray-400">Broker</small>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
       </section>
       <Testimonials />
       <hr className="mt-12" />
