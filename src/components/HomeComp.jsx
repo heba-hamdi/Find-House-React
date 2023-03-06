@@ -30,36 +30,33 @@ import MidFooter from "../components/footer/MidFooter";
 import BottomFooter from "../components/footer/BottomFooter";
 import { CgScrollV } from "react-icons/cg";
 import { BsArrowUpCircleFill } from "react-icons/bs";
-import { useStateContext } from "../contexts/context";
 
 const HomeComp = () => {
-  const { showMenu, setShowMenu } = useStateContext();
   useEffect(() => {
     const scrollUpBtn = document.getElementById("scroll-up");
+
     window.onscroll = function () {
-      scrollFunction();
-    };
-    function scrollFunction() {
       if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
+        document.body.scrollTop > 5 ||
+        document.documentElement.scrollTop > 5
       ) {
         scrollUpBtn.style.display = "block";
       } else {
         scrollUpBtn.style.display = "none";
       }
-    }
+    };
   }, []);
+
+  const scrollUp = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleClickScroll = () => {
     const element = document.getElementById("section-1");
     if (element) {
       // 👇 Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
-  const scrollUp = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToTop = () => {
@@ -164,7 +161,7 @@ const HomeComp = () => {
   // end of sales
 
   return (
-    <div className="relative" id="section">
+    <div id="section">
       {/* offers */}
       <div className="relative">
         <div
@@ -182,7 +179,7 @@ const HomeComp = () => {
 
       <div
         id="scroll-up"
-        className="fixed bottom-[2%] right-[4%] z-10 visible"
+        className="fixed bottom-[2%] right-[4%] z-10 "
         onClick={scrollUp}
       >
         <div className=" text-gray-400/50 bg-white text-3xl border-4 rounded-full cursor-pointer ">

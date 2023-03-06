@@ -149,7 +149,7 @@ const Header = () => {
                 } `}
               >
                 <a href="/profile">
-                  <AiOutlineUser className="text-2xl mr-6" />
+                  <AiOutlineUser className="text-2xl mr-6 invisible sm:visible" />
                 </a>
               </li>
             </ul>
@@ -168,7 +168,7 @@ const Header = () => {
                   />
                 </div>
 
-                <ul className="invisible flex flex-col items-center xs:visible text-xl text-center mt-3 ">
+                <ul className="invisible flex flex-col items-center xs:visible text-lg text-center mt-3 ">
                   <li
                     className={`w-full text-gray-500 py-3 border-gray border-b-[1px] cursor-pointer hover:bg-gray-100 transition duration-300 ease-in-out  `}
                   >
@@ -201,12 +201,12 @@ const Header = () => {
                     <a href="/sign-up">Register</a>
                   </li>
 
-                  <button className="bg-red-500 text-white rounded-3xl px-20 mt-10 hover:bg-red-600  py-2">
+                  <button className="bg-red-500 text-white rounded-3xl px-2  mt-10 hover:bg-red-600  py-2">
                     <Link
                       to={loggedUser ? "/create-listings" : "/sign-in"}
                       className="flex justify-center items-center"
                     >
-                      <AiOutlinePlus className="text-white mr-1" />{" "}
+                      <AiOutlinePlus className="text-white mr-1" />
                       <span className="mr-1 ">Create Listing</span>
                     </Link>
                   </button>
