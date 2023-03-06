@@ -149,7 +149,7 @@ const Header = () => {
                 } `}
               >
                 <a href="/profile">
-                  <AiOutlineUser className="text-2xl mr-6 invisible sm:visible" />
+                  <AiOutlineUser className="text-2xl mr-6 invisible sm:block" />
                 </a>
               </li>
             </ul>

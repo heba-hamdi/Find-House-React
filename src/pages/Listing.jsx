@@ -116,23 +116,23 @@ const Listing = () => {
             <div className="my-6 mx-12">
               <div className=" mr-12">
                 <ul className="grid xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6">
-                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaBed className="mr-2" />
                     {listing.bedrooms > 1
                       ? `${listing.bedrooms} Beds`
                       : `${listing.bedrooms} Bed`}
                   </li>
-                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaBath className="mr-2" />
                     {listing.bathrooms > 1
                       ? `${listing.bathrooms} Baths`
                       : `${listing.bathrooms} Bath`}
                   </li>
-                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaChair className="mr-2" />
                     {listing.furnished ? "Furnished" : "Not Furnished"}
                   </li>
-                  <li className="bg-gray-100 py-2 px-6 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
+                  <li className="bg-gray-100 py-2 px-4 rounded-md text-sm hover:text-red-500 cursor-pointer flex items-center">
                     <FaParking className="mr-2" />
                     {listing.parking ? "Parking" : "No Parking"}
                   </li>
