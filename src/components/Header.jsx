@@ -50,7 +50,7 @@ const Header = () => {
                 src="https://creativelayers.net/themes/findhouse-html/images/header-logo2.png"
                 alt=""
               />
-              <h3 className="text-2xl mx-3">FindHouse</h3>
+              
             </div>
           </a>
           <ul className="invisible flex md:space-x-10 md:visible">
